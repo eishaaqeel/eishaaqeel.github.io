@@ -1,0 +1,17 @@
+/* 
+    Author: Eisha Aqeel (100798173)
+    Date: 1/15/2023
+    Description: CSS file for ICE1
+*/
+#nav{
+    background: pink;
+    padding: 10px;
+    overflow: hidden;
+    float: left;
+}
+
+#main{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 150px;
+}

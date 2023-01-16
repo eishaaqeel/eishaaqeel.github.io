@@ -1,16 +1,10 @@
-//create a variable called a that equals 5
-var a = 5
-//display to the console log the following
-console.log(a)
-
-//the fuction below is commented out because the next randomnumber function is better written
-/*  
-function randomnumber(x, y){
-    return x * y
-} 
+/* 
+    Author: Eisha Aqeel (100798173)
+    Date: 1/15/2023
+    Description: Java Script file for ICE1
 */
-randomnumber = (x, y) => {
-    return x * y
-}
 
-console.log(randomnumber(20, 20))
+//function to display the following alert when the "Click Here" button is clicked
+function alertMe(){
+    alert("Hello, world!");
+}
