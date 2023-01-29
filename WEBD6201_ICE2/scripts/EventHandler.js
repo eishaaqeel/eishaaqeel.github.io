@@ -1,7 +1,7 @@
 /*
   Name: Eisha Aqeel
-  Date: 1/26/2023
-  Description: Java Script file for the WEBD6201 Demo's event handlers
+  Date: 1/19/2023
+  Description: Java Script file for the ICE2 event handlers
 */
 
 var welcomeLabel = document.getElementById("welcome");
@@ -10,7 +10,6 @@ var displayEvent = document.getElementById("displayEvent");
 var userDisplay = document.getElementById("userDisplay");
 var passDisplay = document.getElementById("passDisplay");
 
-//The below 3 events were from in class exersise 2
 welcomeLabel.addEventListener("dblclick", function () {
     console.log("Event: dblclick");
     displayEvent.textContent = "Event: dblclick";
@@ -22,8 +21,7 @@ welcomeLabel.addEventListener("mouseover", function () {
 welcomeLabel.addEventListener("mouseout", function () {
     console.log("Event: mouseout");
     displayEvent.textContent = "Event: mouseout";
-}); 
-
+});
 
 //function to validate, once the submit button is clicked
 function validateForm() {
