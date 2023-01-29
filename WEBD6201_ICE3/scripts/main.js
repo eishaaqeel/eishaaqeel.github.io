@@ -5,7 +5,7 @@
         let randomButton = document.getElementById("RandomButton")
         //listen for when this button is clicked, then use the functon go to the location
         randomButton.addEventListener("click", function(){
-            location.href = "./projects.html"
+            location.href = './projects.html'
         })
 
         let mainContent = document.getElementsByTagName("main")[0]
