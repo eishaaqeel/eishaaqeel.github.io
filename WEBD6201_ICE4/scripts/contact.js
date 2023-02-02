@@ -29,7 +29,7 @@ class Contact{
 
     // Public Override Method
     toString(){
-        return `FullName is ${ this.Name }\nContact Information is ${ this.ContactNumber }\nEmail Address is ${ this.EmailAddress }`
+        return `Full Name is ${ this.Name }\nContact Information is ${ this.ContactNumber }\nEmail Address is ${ this.EmailAddress }`
     }
 
 }
