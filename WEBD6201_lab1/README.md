@@ -1,1 +1,2 @@
-# webd6201 lab 1 - A & E
+# webd6201_lab1
+Angelica Kusik & Eisha Aqeel
