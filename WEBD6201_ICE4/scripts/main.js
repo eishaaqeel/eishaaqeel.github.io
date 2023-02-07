@@ -87,8 +87,8 @@
         console.log(localStorage.getItem("Random Variable"))
         */
 
-        submitButton.addEventListener("click", function(event){
-            event.preventDefault()
+        submitButton.addEventListener("click", function(){
+            
             //if the user subscribes, store their contact in localStorage
             if(subscribeCheckbox.checked){
                 //fullName, contactNumber, and emailAddress are id= from the textboxes defined in contact.html
@@ -112,7 +112,7 @@
         //if there is something in localStorage
         if (localStorage.length > 0) {
             //Get the contactList by id= form the tbody set in contact-list.html
-            let contactList = document.getElementById("contactList")
+            let contactList = document.getElementById("contactlist")
 
             let data = "" // Add data to this variable. Append deserialized data from localStorage to data
             let keys = Object.keys(localStorage) // Returns a String Array of keys
@@ -126,7 +126,7 @@
                 
                 contact.deserialize(contactData)
 
-                // Inject repeatable row into the contactList
+                // Inject repeatable row into the contactlist
                 data += `<tr>
                     <th scope="row" class="text-center">${ index }</th>
                     <td class="text-center">${ contact.Name }</td>
