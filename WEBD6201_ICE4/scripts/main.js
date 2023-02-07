@@ -87,16 +87,61 @@
         console.log(localStorage.getItem("Random Variable"))
         */
 
-        submitButton.addEventListener("click", function(event){
-            event.preventDefault()
+        submitButton.addEventListener("click", function(){
+            
+            //if the user subscribes, store their contact in localStorage
             if(subscribeCheckbox.checked){
-                console.log("User has subscribed")
+                //fullName, contactNumber, and emailAddress are id= from the textboxes defined in contact.html
+                //and this page is able to get their value because we gave contact.html access to this page by adding it's script tag there
+                let contact = new Contact(fullName.value, contactNumber.value, emailAddress.value)
+                
+                //if I am able to serialize the user,
+                if (contact.serialize()){
+                    //let my key eqaul to the contacts name first letter, then add current date
+                    let key = contact.Name.substring(0, 1) + Date.now()
+                    localStorage.setItem(key, contact.serialize())
+                }
+                
             }
         })
     }
 
     function DisplayContactList(){
         console.log("Contact List Page")
+
+        //if there is something in localStorage
+        if (localStorage.length > 0) {
+            //Get the contactList by id= form the tbody set in contact-list.html
+            let contactList = document.getElementById("contactList")
+
+            let data = "" // Add data to this variable. Append deserialized data from localStorage to data
+            let keys = Object.keys(localStorage) // Returns a String Array of keys
+
+            let index = 1 // Use this index to Count the number of keys starting from 1
+
+            // for every key in the keys collection
+            for (const key of keys) {
+                let contactData = localStorage.getItem(key) // Get localStorage data value related to the key
+                let contact = new Contact()
+                
+                contact.deserialize(contactData)
+
+                // Inject repeatable row into the contactList
+                data += `<tr>
+                    <th scope="row" class="text-center">${ index }</th>
+                    <td class="text-center">${ contact.Name }</td>
+                    <td class="text-center">${ contact.ContactNumber }</td>
+                    <td class="text-center">${ contact.EmailAddress }</td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                </tr>
+                `
+
+                index++
+            }
+
+            contactList.innerHTML = data
+        }
     }
 
     function DisplayReferences(){
@@ -104,7 +149,7 @@
     }
 
     function Start() {
-        console.log("App Started!")
+        console.log("Application Started Successfully!")
 
         //switch case statment
         switch (document.title){
