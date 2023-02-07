@@ -112,7 +112,7 @@
         //if there is something in localStorage
         if (localStorage.length > 0) {
             //Get the contactList by id= form the tbody set in contact-list.html
-            let contactList = document.getElementById("contactlist")
+            let contactList = document.getElementById("contactList")
 
             let data = "" // Add data to this variable. Append deserialized data from localStorage to data
             let keys = Object.keys(localStorage) // Returns a String Array of keys
