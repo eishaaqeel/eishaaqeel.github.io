@@ -10,6 +10,7 @@ var displayEvent = document.getElementById("displayEvent");
 var userDisplay = document.getElementById("userDisplay");
 var passDisplay = document.getElementById("passDisplay");
 
+/*
 //The below 3 events were from in class exersise 2
 welcomeLabel.addEventListener("dblclick", function () {
     console.log("Event: dblclick");
@@ -23,7 +24,7 @@ welcomeLabel.addEventListener("mouseout", function () {
     console.log("Event: mouseout");
     displayEvent.textContent = "Event: mouseout";
 }); 
-
+*/
 
 //function to validate, once the submit button is clicked
 function validateForm() {

@@ -6,7 +6,7 @@
 
 (function () {
 
-    function DisplayButton(){
+    function DisplayHome(){
         //assign "RandomButton" from the index page to randomButton 
         let randomButton = document.getElementById("RandomButton")
         //listen for when this button is clicked, then use the functon go to the location
@@ -56,9 +56,51 @@
         ` 
         */
 
-        //
+        /*
+        //The following two lines were for testing contact.js
+        //and will work if <script src="./scripts/contact.js"></script> is uncommented on the index.html page
         let eisha = new Contact("Eisha Aqeel", "2898925432", "eisha.hello.com")
         console.log(eisha.toString())
+        */
+    }
+
+    function DisplayProjects(){
+        //test to see if the following message displays in the console of the Projects page
+        console.log("Projects Page")
+    }
+
+    function DisplayContactUs(){
+        console.log("Contact Us Page")
+
+        let submitButton = document.getElementById("submitButton")
+        let subscribeCheckbox = document.getElementById("subscribeCheckbox")
+
+        //LocalStorage Example:
+        /*
+        // localStorage.setItem("key", "value")
+        localStorage.setItem("Random Variable", "random variable for testing and demonstration")
+        // The value that was set for Random Variable above, will be displayed in the console
+        console.log(localStorage.getItem("Random Variable"))
+        // now remove "Random Variable" from localStorage,
+        localStorage.removeItem("Random Variable")
+        // after it's removed it will show as null in console
+        console.log(localStorage.getItem("Random Variable"))
+        */
+
+        submitButton.addEventListener("click", function(event){
+            event.preventDefault()
+            if(subscribeCheckbox.checked){
+                console.log("User has subscribed")
+            }
+        })
+    }
+
+    function DisplayContactList(){
+        console.log("Contact List Page")
+    }
+
+    function DisplayReferences(){
+        console.log("References Page")
     }
 
     function Start() {
@@ -68,11 +110,20 @@
         switch (document.title){
             //in the case of the webpage title being "Home - WEBD6201 Demo"
             case "Home - WEBD6201 Demo":
-                DisplayButton()
+                DisplayHome()
                 break
             //in the case of the webpage title being "Projects - WEBD6201 Demo"
             case "Projects - WEBD6201 Demo":
-                DisplayButton()
+                DisplayProjects()
+                break
+            case "Contact Us - WEBD6201 Demo":
+                DisplayContactUs()
+                break
+            case "Contact List - WEBD6201 Demo":
+                DisplayContactList()
+                break
+            case "References - WEBD6201 Demo":
+                DisplayReferences()
                 break
         }
     }
