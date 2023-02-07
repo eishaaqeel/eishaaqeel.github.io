@@ -87,8 +87,8 @@
         console.log(localStorage.getItem("Random Variable"))
         */
 
-        submitButton.addEventListener("click", function(){
-            
+        submitButton.addEventListener("click", function(event){
+            event.preventDefault()
             //if the user subscribes, store their contact in localStorage
             if(subscribeCheckbox.checked){
                 //fullName, contactNumber, and emailAddress are id= from the textboxes defined in contact.html
