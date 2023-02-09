@@ -21,7 +21,8 @@
         
         // Most amount of memory heap (jQuery):
         $("#RandomButton").on("click", function(){
-            location.href = 'contact.html';
+            //location.href = 'contact.html';
+            window.location.href = "contact.html";
         })
         
 
