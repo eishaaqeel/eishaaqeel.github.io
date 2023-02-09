@@ -21,7 +21,7 @@
         /*
         // Most amount of memory heap (jQuery):
         $("#RandomButton").on("click", function(){
-            location.herf = 'contact.html'
+            location.href = 'contact.html';
         })
         */
 
@@ -29,9 +29,10 @@
         // 2nd most amount of memory heap (JS querySelectorAll):
         document.querySelectorAll("#RandomButton").forEach(element => {
             element.addEventListener("click", () => {
-                location.herf = 'contact.html'
+                location.href = 'contact.html'
             })
         })
+        
         
 
         let mainContent = document.getElementsByTagName("main")[0]
