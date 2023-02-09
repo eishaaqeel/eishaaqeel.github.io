@@ -7,6 +7,8 @@
 (function () {
 
     function DisplayHome(){
+        // Least amount of memory heap (Regular JS):
+        /*
         //assign "RandomButton" from the index page to randomButton 
         let randomButton = document.getElementById("RandomButton")
         //listen for when this button is clicked, then use the functon go to the location
@@ -14,6 +16,23 @@
             //location.href = './projects.html'
             window.location.href = "projects.html";
         })
+        */
+
+        /*
+        // Most amount of memory heap (jQuery):
+        $("#RandomButton").on("click", function(){
+            location.herf = 'contact.html'
+        })
+        */
+
+        
+        // 2nd most amount of memory heap (JS querySelectorAll):
+        document.querySelectorAll("#RandomButton").forEach(element => {
+            element.addEventListener("click", () => {
+                location.herf = 'contact.html'
+            })
+        })
+        
 
         let mainContent = document.getElementsByTagName("main")[0]
         mainContent.setAttribute("class", "container")
