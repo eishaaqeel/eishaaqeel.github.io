@@ -1,0 +1,45 @@
+/**
+ * Author: Eisha Aqeel, Angelica Kusik
+ * Since: February 10, 2023
+ * Last Updated: February 10, 2023
+ * Description: Custom CSS Styles
+ */
+
+/** buttons **/
+.btn-primary {
+    background-color: #1C82AD !important;
+}
+
+
+/** Navbar **/
+.navbar {
+    border-bottom: 5px solid #1C82AD;
+}
+
+/** Home Section **/
+
+/**Background Image**/
+#home-section {
+    position: relative;
+    background: url(../Content/Images/markus-spiske-MgtHZ4zlC1U-unsplash.jpg); 
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 700px;
+}
+
+/**Background Overlay**/
+#home-section .dark-overlay {
+    position: absolute; /**Here because we want the overley to cover the entire bg we have to make it's position absolute first and then we can positioning it as we want **/
+    top: 0; /**here we are positioning the overley to the top left corner**/
+    left: 0;
+    width: 100%;
+    height: 700px; /**we set the height the same as the parent**/
+    background-color: rgba(0,0,0,0.8); /**We are using rgba here because we want to be able to use an alpha value which is the opacity, so we are setting the first 3 values to zero to get a black color and the last one which determines the opacity to 0.7 **/
+}
+
+/** What We Do Section **/
+
+.what-we-do-section {
+    background-color: #fff;
+}
+
