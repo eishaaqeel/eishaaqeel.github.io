@@ -1,6 +1,13 @@
-<!DOCTYPE html>
+<!--
+  Name: Eisha Aqeel, Angelica Kusik
+  Since: Febuary 5, 2023
+  Last Updated: Febuary 10, 2023
+  Description: Lab 1 index.html
+-->
+<!doctype html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +17,7 @@
     <script src="https://kit.fontawesome.com/de73bfd3a4.js" crossorigin="anonymous"></script>
     <!--Style Sheet-->
     <link rel="stylesheet" href="Content/app.css">
-    <title>WEBD-6201 Lab 1</title>
+    <title>Lab 1 - Home Page</title>
 </head>
 <body>
     <!--Start of Navbar -->
@@ -60,47 +67,49 @@
     </nav>
     <!-- End of Navbar -->
 
-    <div class="container">
-      <header>
-        <h1 id="welcome" class="mt-5">
-            <i id="HomePageIcon" class="fa-solid fa-ghost"></i>
-            Hello World! 
-        </h1>
-
-        <h2 class="mb-5">
-            Welcome to my Webd6201 demo home page
-        </h2>
-        <h2 id="displayEvent" class="border mb-5"></h2>
-
-      </header>
-    </div>
-
-    <main>
-      <!--Form-->
-      <form method="get" id="myForm" name="myForm" onsubmit="return validateForm()" class="container">
-        <div class="mb-3">
-          <label class="form-label" for="username">Username:</label>
-          <input class="form-control" type="text" id="username" name="username" placeholder="e.g. Enter your name">
+    <!-- Home Section -->
+    <section id="home-section">
+      <div class="dark-overlay text-white">
+        <div class="container home-inner">
+          <div class="row">
+            <div class="col-lg-7 text-center">
+              <h1 class="mt-5 pt-5 display-1">Building the Future</h1>
+              <h4 class="mt-4">One line of code at a time</h4>
+              <p class="lead mt-3">
+                Lorem ipsum dolor sit amet consectetur. Dignissimos corrupti a, vitae eligendi ad, 
+                at obcaecati corporis eum ut. Mollitia neque officiis quod quam amet?
+              </p>
+              <a href="" class="btn btn-outline-success btn-lg text-white">Learn More</a>
+            </div>
+            <div class="col-lg-5">
+              
+            </div>
+          </div>
         </div>
-        <div>
-          <label class="form-label" for="password">Password:</label>
-          <input class="form-control" type="text" id="password" name="password">
-        </div>
-        <button type="submit" class="btn btn-danger mt-3" id="submitutton">Submit</button>
-      </form>
 
+      </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section id="what-we-do-section" class="text-dark">
+      <!--Here again same idea, we are using a container to keep the content on the "center" of the page -->
       <div class="container">
-        <div class="mb-3">
-          <label for="disabledTextInput" class="form-label" id="userDisplay"></label>
-        </div>
-        <div class="mb-3">
-          <label for="disabledTextInput" class="form-label" id="passDisplay"></label>
+        <div class="row">
+          <div class="col-lg-5 text-center py-5">
+            <img class="img-fluid" src="./Content/Images/MicrosoftTeams-image.png" alt="Random Image from Unsplash">
+          </div>
+          <div class="col-lg-7 text-center py-5">
+            <h1 class="display-1">What We Do</h1>
+            <p class="lead">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.
+            </p>
+            <a href="#" class="btn btn-primary btn-lg">Find Out More</a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <button id="RandonButton" class="btn btn-primary">Click to Test Js Function</button>
-
-    </main>
 
     <!--jQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
