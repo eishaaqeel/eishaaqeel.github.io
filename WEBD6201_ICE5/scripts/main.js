@@ -17,69 +17,26 @@
             window.location.href = "projects.html";
         })
         */
-
-        /*
+        
         // Most amount of memory heap (jQuery):
         $("#RandomButton").on("click", function(){
             window.location.href = "contact.html";
         })
-        */
-        
+
+        /*
         // 2nd most amount of memory heap (JS querySelectorAll):
         document.querySelectorAll("#RandomButton").forEach(element => {
             element.addEventListener("click", () => {
                 window.location.href = "contact.html";
             })
         })
-        
+        */
 
-        let mainContent = document.getElementsByTagName("main")[0]
-        mainContent.setAttribute("class", "container")
-
-        //create an paragraph element,
-        let mainParagraph = document.createElement("P")
-        //set its attribute id to be "MainParagraph"
-        mainParagraph.setAttribute("id", "MainParagraph")
-        //add another attribute, to make it look better
-        mainParagraph.setAttribute("class", "mt-3 container")
-
-        /**
-         * concatenation: '1' + '2' + '3'
-         * interpolation: `${var_1}`
-         */
         //set the following strings as the attributes content, using template literals such as ${firstString}
         let firstString = "This is a "
-        //use backtick on keyboard ``
-        let secondString = `${firstString} mian paragraph that we added through javascript`
-        // textContent :- changes text node
-        mainParagraph.textContent = secondString
-
-        //append mainParagraph to the page (before the form)
-        //mainContent.before(mainParagraph)
-
-        //append mainParagraph to the page (after the form child)
-        mainContent.appendChild(mainParagraph)
-
-        //to remove/hide an element
-        //document.getElementById("RandomButton").remove()
-
-        // innnerHTML :- overwrites anything in the innerHTML of that element (so everthing before will dissapear)
-        /* 
-        documentBody = document.body    //another way to access the body element
-        documentBody.innerHTML = `
-            <div class="container">
-                <h1 class="display-1"> Hello World, </h1>
-                <p class="mt-5 lead"> this is what innnerHTML does</p>
-            </div>
-        ` 
-        */
-
-        /*
-        //The following two lines were for testing contact.js
-        //and will work if <script src="./scripts/contact.js"></script> is uncommented on the index.html page
-        let eisha = new Contact("Eisha Aqeel", "2898925432", "eisha.hello.com")
-        console.log(eisha.toString())
-        */
+        let secondString = `${firstString} main paragraph that I added through javascript.`
+        //using jQuery add the above paragrah to "main"
+        $("main").addClass("container").append(`<P id="MainParagraph" class="mt-3 container">${secondString}</P>`)
     }
 
     function DisplayProjects(){
