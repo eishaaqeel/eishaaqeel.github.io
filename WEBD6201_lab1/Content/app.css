@@ -5,10 +5,27 @@
  * Description: Custom CSS Styles
  */
 
+ /** Variable Declarations **/
+ :root {
+    --primary-color: #1C82AD;
+    --secondary-color: #03C988;
+}
+
+/** Custom Styles **/
+a {
+    text-decoration: none !important;
+}
+
+
 /** buttons **/
 .btn-primary {
-    background-color: #1C82AD !important;
+    background-color:var(--primary-color) !important;
 }
+
+.btn-success {
+    background-color:var(--secondary-color) !important;
+}
+
 
 
 /** Navbar **/
@@ -41,5 +58,24 @@
 
 .what-we-do-section {
     background-color: #fff;
+}
+
+/** Footer Section **/
+#footer {
+    background-color: #1C82AD;
+}
+
+.footer-signature {
+    color: #FFFF; 
+    margin-left: 5px;
+}
+
+.footer-signature:hover {
+    color: #fff;
+}
+
+.social-icons {
+    font-size: 36px;
+    cursor: pointer;
 }
 
