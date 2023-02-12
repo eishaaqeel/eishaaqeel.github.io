@@ -113,17 +113,28 @@
                         </button>
                     </td>
                     <td class="text-center">
-                        <button value="" class="btn btn-danger btn-sm delete">
+                        <button value="${key}" class="btn btn-danger btn-sm delete">
                             <i class="fas fa-trash-alt fa-sm"></i>&nbsp; Delete
                         </button>
                     </td>
                 </tr>
                 `
-
                 index++
             }
 
             contactList.innerHTML = data
+
+            //When any delete button in the table is clicked, do the following function
+            $("button.delete").on("click", function(){
+                //first confirm if they want to delete
+                if(confirm("Are you sure you want to delete?")){
+                    //then remove the contact from local storage
+                    localStorage.removeItem($(this).val());
+                    //and redirect to the same page, so that the updated table shows
+                    window.location.href = "contact-list.html";
+                }
+            })
+
         }
     }
 
