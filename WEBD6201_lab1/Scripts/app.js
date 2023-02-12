@@ -10,6 +10,9 @@
     //for testing purposes:
     console.log("Page loaded")
 
+    //No matter which page loads, change products navbar link
+    ChangeNavbarLink()
+
 
     function DisplayHomePage() {
 
@@ -125,8 +128,6 @@
 
         /******* Projects Section *******/
 
-        let numberOfCards = 4
-
         //Get the projects section col 
         let projactsCol = document.getElementById("projects-main-col")
 
@@ -136,17 +137,14 @@
         let cardImg1 = document.createElement("img")
         let cardImg2 = document.createElement("img")
         let cardImg3 = document.createElement("img")
-        let cardImg4 = document.createElement("img")
 
         let cardTitle1 = document.createElement("h5")
         let cardTitle2 = document.createElement("h5")
         let cardTitle3 = document.createElement("h5")
-        let cardTitle4 = document.createElement("h5")
 
         let cardParagraph1 = document.createElement("p")
         let cardParagraph2 = document.createElement("p")
         let cardParagraph3 = document.createElement("p")
-        let cardParagraph4 = document.createElement("p")
 
 
         //Add some attributes to elements to style them
@@ -155,50 +153,46 @@
         cardImg1.setAttribute("class", "card-img-top card-image-size")
         cardImg2.setAttribute("class", "card-img-top card-image-size")
         cardImg3.setAttribute("class", "card-img-top card-image-size")
-        cardImg4.setAttribute("class", "card-img-top card-image-size")
 
         cardTitle1.setAttribute("class", "card-title")
         cardTitle2.setAttribute("class", "card-title")
         cardTitle3.setAttribute("class", "card-title")
-        cardTitle4.setAttribute("class", "card-title")
 
         cardParagraph1.setAttribute("class", "card-text")
         cardParagraph2.setAttribute("class", "card-text")
         cardParagraph3.setAttribute("class", "card-text")
-        cardParagraph4.setAttribute("class", "card-text")
 
 
         //Declare string variables to hold the text value of text elements
         let projectsTitle = "Our Latest Projects"
-        let card1Title = "Eisha's WEBD-3201 Project"
-        let card1Text = "This is a website we worked on for Web Development Intermediate (WEBD-3201) using PHP."
-        let card2Title = "Angelica's Tin Dog Project"
-        let card2Text = "This was a Summer Project implemented using Bootstrap."
-        let card3Title = "Card title"
-        let card3Text = "This card has supporting text below as a natural lead-in to additional content."
-        let card4Title = "Angelica's Writing for The Web Project"
-        let card4Text = "This was a Web Project Developed for Durham College Professional and part-Time Learning."
+        let card1Title = "Eisha's WEBD-3201 PHP Project"
+        let card1Text = "This is a complete web application developed for the Web Development Intermediate (WEBD-3201) that demonstrates the " 
+                    + " implementation of all CRUD (create, read, update, delete) steps using PHP. The application was meant for a sales company that needed "
+                    + " a web application where employees could access and manipulate customer information. The application connects to a Postgres database "
+                    + " and implements security best practices such as password hashing, prepared statements and more."
+        let card2Title = "Angelica's TinDog Project"
+        let card2Text = "TinDog Project is a responsive web application developed as a summer project for a fictitious statup that wanted to promote their" 
+                    +" new product - a Tinder for dogs! This application implements responsive layout using Bootstrap and custom CSS and looks great in any screen."
+        let card3Title = ".Net WPF Payroll Calculator"
+        let card3Text = "Payroll Calculator was a .Net project we worked on for the .Net course where we created a complete MVC web application using WPF, C# and Bootstrap "
+                    + " for the front-end designer."
 
         //Add text value to elements
         projectsHeading1.textContent = projectsTitle
         cardTitle1.textContent = card1Title
         cardTitle2.textContent = card2Title
         cardTitle3.textContent = card3Title
-        cardTitle4.textContent = card4Title
         cardParagraph1.textContent = card1Text
         cardParagraph2.textContent = card2Text
         cardParagraph3.textContent = card3Text
-        cardParagraph4.textContent = card4Text
 
         //set buttons href attribute & img src
         cardImg1.src = "./Content/Images/EishaWebd3201.png"
         cardImg2.src = "./Content/Images/AngelicaTinDogProject.jpg"
-        cardImg3.src = "./Content/Images/MicrosoftTeams-image.png"
-        cardImg4.src = "./Content/Images/AngelicaWritingForTheWebProject.jpg"
+        cardImg3.src = "./Content/Images/AngelicaWPFapplication.jpg"
         cardImg1.alt = "Eisha's Webd 3201 Project Dashboard Page"
         cardImg2.alt = "Angelica's TinDog Summer Project"
-        cardImg3.alt = "Technologies Image"
-        cardImg4.alt = "Angelica's Writing for The Web Project"
+        cardImg3.alt = ".Net WPF Payroll Calculator"
 
         //Get cards and add image
         let card1 = document.getElementById("card1")
@@ -209,9 +203,6 @@
 
         let card3 = document.getElementById("card3")
         card3.prepend(cardImg3)
-
-        let card4 = document.getElementById("card4")
-        card4.prepend(cardImg4)
 
         //Get card body and add text elements
         let card1Body = document.getElementsByClassName("card-body")[0]
@@ -225,10 +216,6 @@
         let card3Body = document.getElementsByClassName("card-body")[2]
         card3Body.appendChild(cardTitle3)
         card3Body.appendChild(cardParagraph3)
-
-        let card4Body = document.getElementsByClassName("card-body")[3]
-        card4Body.appendChild(cardTitle4)
-        card4Body.appendChild(cardParagraph4)
 
 
         //Add elements to the page
@@ -295,6 +282,35 @@
         //Dinamically getting the value of "year" for the footer
         $('#year').text(new Date().getFullYear());
 
+    }
+
+    function ChangeNavbarLink() {
+        //Changing the products link:
+        //Get the products list item from the navbar
+        let productsLink = document.getElementsByClassName("nav-link")[1]
+        //Change href to projects
+        productsLink.setAttribute("href", "projects.html")
+        //Change text content and icon
+        productsLink.innerHTML = "<i class='fa-solid fa-briefcase'></i> Projects"
+
+        //Adding the new hr link to the navbar
+        //Create the li element
+        let hrLink = document.createElement("li")
+        hrLink.setAttribute("class", "nav-item")
+
+        //Create the a tag that goes within the hrLink
+        let hrAnchor = document.createElement("a")
+        hrAnchor.setAttribute("class", "nav-link")
+        hrAnchor.href = "human-resources.html"
+        hrAnchor.innerHTML = "<i class='fa-solid fa-people-group'></i> Human Resources" 
+
+        //Add the a to the li 
+        hrLink.appendChild(hrAnchor)
+
+        //Get the navbar last li
+        let aboutLink = $(".navbar-nav li:last")
+        //insert hr link before it
+        aboutLink.before(hrLink)
     }
 
     

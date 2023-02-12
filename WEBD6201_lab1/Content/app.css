@@ -86,3 +86,15 @@ a {
     height: 180px;
 }
 
+.card {
+    cursor: pointer;
+}
+
+.card-title {
+    text-align: center;
+    color: var(--primary-color)
+}
+
+.card:hover {
+    box-shadow: 0 4px 7px 0 var(--secondary-color);
+}
