@@ -88,15 +88,13 @@
         let wwdText1 = "We are full-stack web developers ready to build the perfect solution for your company. Front-end, back-end, we can do it all."
                     + " Get ready to take your business to the next level with fast, modern, responsive web applications that are sure to impress your clients."
         let wwdtext2 = "Click on the button below to check out some of our latest projects."
-        let citeText = "Image Source:"
 
         //set buttons href attribute & img src
-        wwdImg.src = "./Content/Images/MicrosoftTeams-image.png"
+        wwdImg.src = "./Content/Images/WelcomeImage.png"
         wwdImg.alt = "Technologies Image"
         wwdCiteAnchor.href = "https://unsplash.com/"
         wwdCiteAnchor.target = "_blank"
         wwdCiteAnchor.rel = "noopener"
-        wwdCiteAnchor.textContent = " ADD IMAGE SOURCE"
         wwdButton.href = "./projects.html"
         
 
@@ -104,7 +102,6 @@
         wwdHeading1.textContent = wwdTitle
         wwdParagraph1.textContent = wwdText1
         wwdParagraph2.textContent = wwdtext2
-        wwdCiteTag.textContent = citeText
         wwdButton.textContent = "See Projects"
 
         //Append elements to the left column
@@ -165,18 +162,16 @@
 
         //Declare string variables to hold the text value of text elements
         let projectsTitle = "Our Latest Projects"
-        let card1Title = "Eisha's WEBD-3201 PHP Project"
-        let card1Text = "This is a complete web application developed for the Web Development Intermediate (WEBD-3201) that demonstrates the " 
-                    + " implementation of all CRUD (create, read, update, delete) steps using PHP. The application was meant for a sales company that needed "
-                    + " a web application where employees could access and manipulate customer information. The application connects to a Postgres database "
+        let card1Title = "Eisha's Web Development Project"
+        let card1Text = "This is a web application meant for a business that needs "
+                    + " a website where employees can access and manipulate customer information. The application connects to a Postgres database "
                     + " and implements security best practices such as password hashing, prepared statements and more."
         let card2Title = "Angelica's TinDog Project"
         let card2Text = "TinDog Project is a responsive web application developed as a summer project for a fictitious statup that wanted to promote their" 
                     +" new product - a Tinder for dogs! This application implements responsive layout using Bootstrap and custom CSS and looks great in any screen."
-        let card3Title = ".Net WPF Payroll Calculator"
-        let card3Text = "Payroll Calculator was a .Net project we worked on for the .Net course where we created a complete MVC web application using WPF, C# and Bootstrap "
-                    + " for the front-end designer."
-
+        let card3Title = "Payroll Calculator Web Application"
+        let card3Text = "Payroll Calculator was a .Net development project we worked on where we created a complete ASP .NET MVC (Model View Controller) web application also using C# and Bootstrap."
+                      + " This application allows you to calculate diffrent employees payrolls, and store and edit thier data."
         //Add text value to elements
         projectsHeading1.textContent = projectsTitle
         cardTitle1.textContent = card1Title
