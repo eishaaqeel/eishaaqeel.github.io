@@ -38,7 +38,7 @@ a {
 /**Background Image**/
 #home-section {
     position: relative;
-    background: url(../Content/Images/markus-spiske-MgtHZ4zlC1U-unsplash.jpg); 
+    background: url(../Content/Images/markus-spiske-MgtHZ4zlC1U-unsplash.jpg); /* Image retrieved from https://unsplash.com/photos/MgtHZ4zlC1U  */
     background-size: cover;
     background-attachment: fixed;
     min-height: 700px;
@@ -79,3 +79,7 @@ a {
     cursor: pointer;
 }
 
+.card-image-size {
+    width: 100%;
+    height: 180px;
+}
