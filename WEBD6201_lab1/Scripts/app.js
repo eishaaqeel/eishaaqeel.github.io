@@ -228,7 +228,92 @@
     }
 
     function DisplayServicesPage() {
+      /******* Services Section *******/
 
+        //Get the services section coloum by Id defined in services.html
+        let servicesCol = document.getElementById("services-main-col")
+
+        //define element for the Services page Heading
+        let servicesHeading = document.createElement("h1")
+        //define variables for the service page images, titles, and description paragraphs
+        let serviceImg1 = document.createElement("img")
+        let serviceImg2 = document.createElement("img")
+        let serviceImg3 = document.createElement("img")
+
+        let serviceTitle1 = document.createElement("h5")
+        let serviceTitle2 = document.createElement("h5")
+        let serviceTitle3 = document.createElement("h5")
+
+        let serviceParagraph1 = document.createElement("p")
+        let serviceParagraph2 = document.createElement("p")
+        let serviceParagraph3 = document.createElement("p")
+
+        //Add some attributes to elements to style them
+        servicesHeading.setAttribute("class", "mt-3 pt-5 display-2 text-center")
+
+        serviceImg1.setAttribute("class", "card-img-top card-image-size")
+        serviceImg2.setAttribute("class", "card-img-top card-image-size")
+        serviceImg3.setAttribute("class", "card-img-top card-image-size")
+
+        serviceTitle1.setAttribute("class", "card-title")
+        serviceTitle2.setAttribute("class", "card-title")
+        serviceTitle3.setAttribute("class", "card-title")
+
+        serviceParagraph1.setAttribute("class", "card-text")
+        serviceParagraph2.setAttribute("class", "card-text")
+        serviceParagraph3.setAttribute("class", "card-text")
+
+        //Declare string variables to hold the text value of text elements
+        let servicePageTitle = "Our Services"
+        let service1Title = "Frontend Development"
+        let service1Text = "We offer front-end development using HTML5, CSS3, JavaScript, and more. With our front-end development, your website will look stunning."
+        let service2Title = "Backend Development"
+        let service2Text = "We offer backend development using the most in-demand programming languages such as Python, Java, and PHP."
+                          + " We also use PostgreSQL to give your data a safe home. With our backend development, your website will function smoothly."
+        let service3Title = "Software Testing"
+        let service3Text = "We can perform unit tests, functional tests, and performance tests, so your website has no issues in the future."
+        //Add text value to elements
+        servicesHeading.textContent = servicePageTitle
+        serviceTitle1.textContent = service1Title
+        serviceTitle2.textContent = service2Title
+        serviceTitle3.textContent = service3Title
+        serviceParagraph1.textContent = service1Text
+        serviceParagraph2.textContent = service2Text
+        serviceParagraph3.textContent = service3Text
+
+        //set the image source locations and thier alt texts
+        serviceImg1.src = "./Content/Images/frontendDev.png"
+        serviceImg2.src = "./Content/Images/backendDev.png"
+        serviceImg3.src = "./Content/Images/softwareTesting.png"
+        serviceImg1.alt = "Service 1 - Frontend Development"
+        serviceImg2.alt = "Service 2 - Backend Development"
+        serviceImg3.alt = "Service 3 - Software Testing"
+
+        //Add service images to html using javaScript
+        let service1 = document.getElementById("service1")
+        service1.prepend(serviceImg1)
+
+        let service2 = document.getElementById("service2")
+        service2.prepend(serviceImg2)
+
+        let service3 = document.getElementById("service3")
+        service3.prepend(serviceImg3)
+
+        //Add service tile and description paragrahss to html using javaScript
+        let card1Body = document.getElementsByClassName("card-body")[0]
+        card1Body.appendChild(serviceTitle1)
+        card1Body.appendChild(serviceParagraph1)
+
+        let card2Body = document.getElementsByClassName("card-body")[1]
+        card2Body.appendChild(serviceTitle2)
+        card2Body.appendChild(serviceParagraph2)
+
+        let card3Body = document.getElementsByClassName("card-body")[2]
+        card3Body.appendChild(serviceTitle3)
+        card3Body.appendChild(serviceParagraph3)
+
+        //Add services Heading to the page
+        servicesCol.prepend(servicesHeading)
 
         //Lastly add footer to page
         DisplayFooter()
