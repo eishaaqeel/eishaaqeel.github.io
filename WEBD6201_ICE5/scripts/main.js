@@ -108,7 +108,7 @@
                     <td class="text-center">${ contact.ContactNumber }</td>
                     <td class="text-center">${ contact.EmailAddress }</td>
                     <td class="text-center">
-                        <button value="" class="btn btn-primary btn-sm edit">
+                        <button value="${key}" class="btn btn-primary btn-sm edit">
                             <i class="fas fa-edit fa-sm"></i>&nbsp; Edit
                         </button>
                     </td>
