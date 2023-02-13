@@ -223,6 +223,145 @@
 
     function DisplayAboutUsPage() {
 
+        /******* About Us Section *******/
+
+        //Get the about section col 
+        let aboutUsCol = document.getElementById("about-main-col")
+
+        //Create col elements 
+        let aboutUsHeading1 = document.createElement("h1")
+        
+        let cardImg1 = document.createElement("img")
+        let cardImg2 = document.createElement("img")
+
+        let cardTitle1 = document.createElement("h3")
+        let cardTitle2 = document.createElement("h3")
+        let cardSubTitle1 = document.createElement("h5")
+        let cardSubTitle2 = document.createElement("h5")
+
+        let cardParagraph1 = document.createElement("p")
+        let cardParagraph2 = document.createElement("p")
+
+        let socialIconsContainer1 = document.createElement("div")
+        let socialIconsContainer2 = document.createElement("div")
+
+        let linkedinIcon1 = document.createElement("div")
+        let linkedinIcon2 = document.createElement("div")
+        let gitHubIcon1 = document.createElement("div")
+        let gitHubIcon2 = document.createElement("div")
+        let twitterIcon1 = document.createElement("div")
+        let twitterIcon2 = document.createElement("div")
+
+        let downloadResume1 = document.createElement("a")
+        let downloadResume2 = document.createElement("a")
+        let downloadButton1Icon = document.createElement("i")
+        let downloadButton2Icon = document.createElement("i")
+
+        //Add some attributes to elements to style them
+        aboutUsHeading1.setAttribute("class", "mt-3 pt-5 display-2 text-center")
+
+        cardImg1.setAttribute("class", "img-fluid rounded-circle w-50 mb-3")
+        cardImg2.setAttribute("class", "img-fluid rounded-circle w-50 mb-3")
+
+        cardTitle1.setAttribute("class", "card-title")
+        cardTitle2.setAttribute("class", "card-title")
+        cardSubTitle1.setAttribute("class", "text-muted text-center")
+        cardSubTitle2.setAttribute("class", "text-muted text-center")
+
+        cardParagraph1.setAttribute("class", "card-text text-start")
+        cardParagraph2.setAttribute("class", "card-text text-start")
+
+        socialIconsContainer1.setAttribute("class", "d-flex justify-content-center")
+        socialIconsContainer2.setAttribute("class", "d-flex justify-content-center")
+
+        linkedinIcon1.setAttribute("class", "p-4")
+        linkedinIcon2.setAttribute("class", "p-4")
+        gitHubIcon1.setAttribute("class", "p-4")
+        gitHubIcon2.setAttribute("class", "p-4")
+        twitterIcon1.setAttribute("class", "p-4")
+        twitterIcon2.setAttribute("class", "p-4")
+
+        downloadResume1.setAttribute("class", "btn btn-outline-primary m-4 btn-lg")
+        downloadResume2.setAttribute("class", "btn btn-outline-primary m-4 btn-lg")
+
+        downloadButton1Icon.setAttribute("class", "fa-solid fa-ghost")
+        downloadButton2Icon.setAttribute("class", "fa-solid fa-ghost")
+
+        linkedinIcon1.innerHTML = "<a href='https://www.linkedin.com/in/eisha-aqeel/'><i class='fa-brands fa-linkedin'></i></a>" 
+        linkedinIcon2.innerHTML = "<a href='https://www.linkedin.com/in/angelica-kusik/'><i class='fa-brands fa-linkedin'></i></a>" 
+        gitHubIcon1.innerHTML = "<a href='https://github.com/eishaaqeel/eishaaqeel.github.io/'><i class='fa-brands fa-square-github'></i></a>" 
+        gitHubIcon2.innerHTML = "<a href='https://github.com/AngelKusik'><i class='fa-brands fa-square-github'></i></a>" 
+        twitterIcon1.innerHTML = "<a href='#'><i class='fa-brands fa-square-twitter'></i></a>" 
+        twitterIcon2.innerHTML = "<a href='#'><i class='fa-brands fa-square-twitter'></i></a>" 
+
+        //Declare string variables to hold the text value of text elements
+        let aboutUsTitle = "About Us"
+        let card1Title = "Eisha Aqeel"
+        let card2Title = "Angelica Kusik"
+        let card1SubTitle = "Full Stack Developer"
+        let card2SubTitle = "Full Stack Developer"
+        let card1Text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        let card2Text = "Hi! My name is Angelica Kusik and I am a computer programming student at Durham College, soon to graduate." 
+                    + " I am excited to further my career in the software development industry and am actively seeking job opportunities in this field. I am confident that my experience," 
+                    + "both in academia and in the workforce, will make me a valuable asset to any company. I am eager to continue learning and growing as a developer and am excited to see where my passion for technology will take me."
+
+        //Add text value to elements
+        aboutUsHeading1.textContent = aboutUsTitle
+        cardTitle1.textContent = card1Title
+        cardTitle2.textContent = card2Title
+        cardSubTitle1.textContent = card1SubTitle
+        cardSubTitle2.textContent = card2SubTitle
+        cardParagraph1.textContent = card1Text
+        cardParagraph2.textContent = card2Text
+        downloadResume1.textContent = " Download Resume"
+        downloadResume2.textContent = " Download Resume" 
+
+        //Add icons to socialIcon container
+        socialIconsContainer1.appendChild(linkedinIcon1)
+        socialIconsContainer1.appendChild(twitterIcon1)
+        socialIconsContainer1.appendChild(gitHubIcon1)
+
+        socialIconsContainer2.appendChild(linkedinIcon2)
+        socialIconsContainer2.appendChild(twitterIcon2)
+        socialIconsContainer2.appendChild(gitHubIcon2)
+
+        downloadResume1.prepend(downloadButton1Icon)
+        downloadResume2.prepend(downloadButton2Icon)
+
+        //set buttons href attribute & img src
+        cardImg1.src = "./Content/Images/EishaLinkdinPic2.jpg"
+        cardImg2.src = "./Content/Images/AngelicaPic2.jpg"
+        cardImg1.alt = "Eisha Aqeel Profile Pic"
+        cardImg2.alt = "Angelica Kusik Profile Pic"
+        downloadResume1.href = "./Resume/eishaAqeelGeneralResume.pdf"
+        downloadResume2.href = "./Resume/angelicaKusikGeneralResume.pdf"
+
+        //Get cards and add image
+        let card1 = document.getElementById("about-card1")
+        card1.prepend(cardImg1)
+
+        let card2 = document.getElementById("about-card2")
+        card2.prepend(cardImg2)
+
+        //Get card body and add text elements
+        let card1Body = document.getElementsByClassName("card-body")[0]
+        card1Body.appendChild(cardTitle1)
+        card1Body.appendChild(cardSubTitle1)
+        card1Body.appendChild(cardParagraph1)
+        card1Body.appendChild(downloadResume1)
+        card1Body.appendChild(socialIconsContainer1)
+
+        let card2Body = document.getElementsByClassName("card-body")[1]
+        card2Body.appendChild(cardTitle2)
+        card2Body.appendChild(cardSubTitle2)
+        card2Body.appendChild(cardParagraph2)
+        card2Body.appendChild(downloadResume2)
+        card2Body.appendChild(socialIconsContainer2)
+
+
+        //Add elements to the page
+        aboutUsCol.prepend(aboutUsHeading1)
+
         //Lastly add footer to page
         DisplayFooter()
     }
