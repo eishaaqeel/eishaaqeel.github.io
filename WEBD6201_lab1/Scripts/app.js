@@ -165,13 +165,13 @@
         let card1Title = "Eisha's Web Development Project"
         let card1Text = "This is a web application meant for a business that needs "
                     + " a website where employees can access and manipulate customer information. The application connects to a Postgres database "
-                    + " and implements security best practices such as password hashing, prepared statements and more."
+                    + " and implements security best practices such as password hashing, prepared statements, and more."
         let card2Title = "Angelica's TinDog Project"
-        let card2Text = "TinDog Project is a responsive web application developed as a summer project for a fictitious statup that wanted to promote their" 
-                    +" new product - a Tinder for dogs! This application implements responsive layout using Bootstrap and custom CSS and looks great in any screen."
+        let card2Text = "TinDog Project is a responsive web application developed as a summer project for a fictitious startup that wanted to promote their" 
+                    +" new product - a Tinder for dogs! This application implements a responsive layout using Bootstrap and custom CSS and looks great on any screen."
         let card3Title = "Payroll Calculator Web Application"
         let card3Text = "Payroll Calculator was a .Net development project we worked on where we created a complete ASP .NET MVC (Model View Controller) web application also using C# and Bootstrap."
-                      + " This application allows you to calculate diffrent employees payrolls, and store and edit thier data."
+                      + " This application allows you to calculate different employees' payrolls and store and edit their data."
         //Add text value to elements
         projectsHeading1.textContent = projectsTitle
         cardTitle1.textContent = card1Title
@@ -298,7 +298,7 @@
                       + "I am passionate about software and database development. Currently, I am looking for opportunities to use my skills to build real-world applications. "
                       + "Check out my resume below; I would be happy to intern for you this summer."
         let card2Text = "Hi! My name is Angelica Kusik and I am a computer programming student at Durham College, soon to graduate." 
-                    + " I am excited to further my career in the software development industry and am actively seeking job opportunities in this field. I am confident that my experience," 
+                    + " I am excited to further my career in the software development industry and am actively seeking job opportunities in this field. I am confident that my experience, " 
                     + "both in academia and in the workforce, will make me a valuable asset to any company. I am eager to continue learning and growing as a developer and am excited to see where my passion for technology will take me."
 
         //Add text value to elements
@@ -309,8 +309,8 @@
         cardSubTitle2.textContent = card2SubTitle
         cardParagraph1.textContent = card1Text
         cardParagraph2.textContent = card2Text
-        downloadResume1.textContent = " Download Resume"
-        downloadResume2.textContent = " Download Resume" 
+        downloadResume1.textContent = " View Resume"
+        downloadResume2.textContent = " View Resume" 
 
         //Add icons to socialIcon container
         socialIconsContainer1.appendChild(linkedinIcon1)
