@@ -98,3 +98,42 @@ a {
 .card:hover {
     box-shadow: 0 4px 7px 0 var(--secondary-color);
 }
+
+/**** About Page *****/
+
+#about-section img {
+    margin-top: -50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#about-section .card:hover {
+    background: var(--secondary-color); /* #3292a6; */
+    color: #fff; 
+}
+
+#about-section .card:hover .fa-brands {
+    color: white; 
+}
+
+#about-section .fa-brands {
+    font-size: 200%;
+    color: var(--secondary-color);
+}
+
+#about-section .card:hover .card-title {
+    color: white; 
+}
+
+#about-section .card:hover .text-muted {
+    color: white;
+}
+
+#about-section .btn-outline-primary {
+    color: var(--primary-color);
+}
+
+#about-section .card:hover .btn-outline-primary {
+    color: white;
+    background-color: var(--primary-color);
+}
