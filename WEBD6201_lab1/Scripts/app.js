@@ -320,7 +320,29 @@
     }
 
     function DisplayContactUsPage() {
+      /******* Contact Us Section *******/
+        //Contant Us Heading
+        //Get the contact-main-col by Id defined in contact.html
+        let contactUsCol = document.getElementById("contact-main-col")
+        //Create h1 element for the Contact Us page Heading
+        let contactUsHeading = document.createElement("h1")
+        //Style the contactUsHeading
+        contactUsHeading.setAttribute("class", "mt-3 pt-5 display-2 text-center")
+        //Declare servicePageTitle the varible that holds the string title
+        let servicePageTitle = "Contant Us"
+        //Add servicePageTitle value to the contactUsHeading HTML element
+        contactUsHeading.textContent = servicePageTitle
+        //Add contact us Heading to the web page
+        contactUsCol.prepend(contactUsHeading)
 
+        //
+        let submitButton = document.getElementById("submitButton")
+        //submitButton.addEventListener("click", function(){
+          let contact = new Contact(fullName.value, contactNumber.value, emailAddress.value)
+          let contactDisplay = `Full Name is ${ contact.Name }\nContact Information is ${ contact.ContactNumber }\nEmail Address is ${ contact.EmailAddress }`
+          console.log(contactDisplay)
+
+        //})
 
         //Lastly add footer to page
         DisplayFooter()
@@ -421,9 +443,38 @@
         }
       }
 
-
-
       //When document loads for the first time, call the Start function
       window.addEventListener("load", Start)
       
 })()
+
+class Contact{
+  constructor(name, contactNumber, emailAddress){
+      this.Name = name
+      this.ContactNumber = contactNumber
+      this.EmailAddress = emailAddress
+  }
+
+  // Getter and Setters
+  get Name(){
+      return this.m_name
+  }
+  set Name(name){
+      this.m_name = name
+  }
+
+  get ContactNumber(){
+      return this.m_contactNumber
+  }
+  set ContactNumber(contactNumber){
+      this.m_contactNumber = contactNumber
+  }
+
+  get EmailAddress(){
+      return this.m_emailAddress
+  }
+  set EmailAddress(emailAddress){
+      this.m_emailAddress = emailAddress
+  }
+
+}
