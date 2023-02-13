@@ -249,8 +249,6 @@
         let linkedinIcon2 = document.createElement("div")
         let gitHubIcon1 = document.createElement("div")
         let gitHubIcon2 = document.createElement("div")
-        let twitterIcon1 = document.createElement("div")
-        let twitterIcon2 = document.createElement("div")
 
         let downloadResume1 = document.createElement("a")
         let downloadResume2 = document.createElement("a")
@@ -278,8 +276,6 @@
         linkedinIcon2.setAttribute("class", "p-4")
         gitHubIcon1.setAttribute("class", "p-4")
         gitHubIcon2.setAttribute("class", "p-4")
-        twitterIcon1.setAttribute("class", "p-4")
-        twitterIcon2.setAttribute("class", "p-4")
 
         downloadResume1.setAttribute("class", "btn btn-outline-primary m-4 btn-lg")
         downloadResume2.setAttribute("class", "btn btn-outline-primary m-4 btn-lg")
@@ -291,8 +287,6 @@
         linkedinIcon2.innerHTML = "<a href='https://www.linkedin.com/in/angelica-kusik/'><i class='fa-brands fa-linkedin'></i></a>" 
         gitHubIcon1.innerHTML = "<a href='https://github.com/eishaaqeel/eishaaqeel.github.io/'><i class='fa-brands fa-square-github'></i></a>" 
         gitHubIcon2.innerHTML = "<a href='https://github.com/AngelKusik'><i class='fa-brands fa-square-github'></i></a>" 
-        twitterIcon1.innerHTML = "<a href='#'><i class='fa-brands fa-square-twitter'></i></a>" 
-        twitterIcon2.innerHTML = "<a href='#'><i class='fa-brands fa-square-twitter'></i></a>" 
 
         //Declare string variables to hold the text value of text elements
         let aboutUsTitle = "About Us"
@@ -300,7 +294,9 @@
         let card2Title = "Angelica Kusik"
         let card1SubTitle = "Full Stack Developer"
         let card2SubTitle = "Full Stack Developer"
-        let card1Text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        let card1Text = "Hello, my name is Eisha, and I am in my second year of studying Computer Programming and Analysis at Durham College. "
+                      + "I am passionate about software and database development. Currently, I am looking for opportunities to use my skills to build real-world applications. "
+                      + "Check out my resume below; I would be happy to intern for you this summer."
         let card2Text = "Hi! My name is Angelica Kusik and I am a computer programming student at Durham College, soon to graduate." 
                     + " I am excited to further my career in the software development industry and am actively seeking job opportunities in this field. I am confident that my experience," 
                     + "both in academia and in the workforce, will make me a valuable asset to any company. I am eager to continue learning and growing as a developer and am excited to see where my passion for technology will take me."
@@ -318,11 +314,9 @@
 
         //Add icons to socialIcon container
         socialIconsContainer1.appendChild(linkedinIcon1)
-        socialIconsContainer1.appendChild(twitterIcon1)
         socialIconsContainer1.appendChild(gitHubIcon1)
 
         socialIconsContainer2.appendChild(linkedinIcon2)
-        socialIconsContainer2.appendChild(twitterIcon2)
         socialIconsContainer2.appendChild(gitHubIcon2)
 
         downloadResume1.prepend(downloadButton1Icon)
