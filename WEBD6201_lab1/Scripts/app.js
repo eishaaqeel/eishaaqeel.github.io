@@ -2,7 +2,7 @@
  * @author Eisha Aqeel #, Angelica Kusik #100849912
  * @version 2.0.0
  * @since February 10, 2023
- * @description WEBD6201 Lab 1 Functionality
+ * @description WEBD6201 Lab 1 - Js Functionality
  * 
  */
 
@@ -459,6 +459,7 @@
     }
 
     function DisplayContactUsPage() {
+        
       /******* Contact Us Section *******/
         //Contant Us Heading
         //Get the contact-main-col by Id defined in contact.html
@@ -468,20 +469,27 @@
         //Style the contactUsHeading
         contactUsHeading.setAttribute("class", "mt-3 pt-5 display-2 text-center")
         //Declare servicePageTitle the varible that holds the string title
-        let servicePageTitle = "Contant Us"
+        let servicePageTitle = "Contact Us"
         //Add servicePageTitle value to the contactUsHeading HTML element
         contactUsHeading.textContent = servicePageTitle
         //Add contact us Heading to the web page
         contactUsCol.prepend(contactUsHeading)
 
-        //
+        //get submit button
         let submitButton = document.getElementById("submitButton")
-        //submitButton.addEventListener("click", function(){
-          let contact = new Contact(fullName.value, contactNumber.value, emailAddress.value)
-          let contactDisplay = `Full Name is ${ contact.Name }\nContact Information is ${ contact.ContactNumber }\nEmail Address is ${ contact.EmailAddress }`
-          console.log(contactDisplay)
+        
+        //add event listener to form's submit button
+        submitButton.addEventListener("click", function (event) {
+            event.preventDefault()
+            let contact = new Contact(fullName.value, contactNumber.value, emailAddress.value, message.value)
+            console.log(contact.toString())
 
-        //})
+            //redirect after 3 seconds
+            window.setTimeout(function() {
+                url = './index.html'
+                location.href = url;
+                }, 3000);
+        })
 
         //Lastly add footer to page
         DisplayFooter()
@@ -586,34 +594,3 @@
       window.addEventListener("load", Start)
       
 })()
-
-class Contact{
-  constructor(name, contactNumber, emailAddress){
-      this.Name = name
-      this.ContactNumber = contactNumber
-      this.EmailAddress = emailAddress
-  }
-
-  // Getter and Setters
-  get Name(){
-      return this.m_name
-  }
-  set Name(name){
-      this.m_name = name
-  }
-
-  get ContactNumber(){
-      return this.m_contactNumber
-  }
-  set ContactNumber(contactNumber){
-      this.m_contactNumber = contactNumber
-  }
-
-  get EmailAddress(){
-      return this.m_emailAddress
-  }
-  set EmailAddress(emailAddress){
-      this.m_emailAddress = emailAddress
-  }
-
-}
