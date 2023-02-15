@@ -124,9 +124,9 @@
 
             contactList.innerHTML = data
 
-            //
+            //Add contact button
             $("#addButton").on("click", () =>{
-                location.href = 'edit.html#add'
+                window.location.href = 'edit.html#add'
             })
 
             //When any delete button in the table is clicked, do the following function
@@ -141,6 +141,11 @@
             })
 
         }
+    }
+
+    function DisplayEditPage(){
+        console.log(location.hash)
+
     }
 
     function DisplayReferences(){
@@ -168,6 +173,9 @@
                 break
             case "References - WEBD6201 Demo":
                 DisplayReferences()
+                break
+            case "Edit - WEBD6201 Demo":
+                DisplayEditPage()
                 break
         }
     }
