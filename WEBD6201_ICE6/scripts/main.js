@@ -108,7 +108,7 @@
                     <td class="text-center">${ contact.ContactNumber }</td>
                     <td class="text-center">${ contact.EmailAddress }</td>
                     <td class="text-center">
-                        <button value="" class="btn btn-primary btn-sm edit">
+                        <button value="${key}" class="btn btn-primary btn-sm edit">
                             <i class="fas fa-edit fa-sm"></i>&nbsp; Edit
                         </button>
                     </td>
@@ -124,13 +124,18 @@
 
             contactList.innerHTML = data
 
+            //
+            $("#addButton").on("click", () =>{
+                location.href = 'edit.html#add'
+            })
+
             //When any delete button in the table is clicked, do the following function
             $("button.delete").on("click", function(){
                 //first confirm if they want to delete
                 if(confirm("Are you sure you want to delete?")){
                     //then remove the contact from local storage
                     localStorage.removeItem($(this).val());
-                    //and redirect to the same page, so that the updated table shows
+                    //and redirect to the same page, so that the updated table shows (refreshing the page)
                     window.location.href = "contact-list.html";
                 }
             })
