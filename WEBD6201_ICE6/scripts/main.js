@@ -126,7 +126,7 @@
 
             //Add contact button
             $("#addButton").on("click", () =>{
-                window.location.href = 'edit.html#add'
+                window.location.href = "edit.html#add";
             })
 
             //When any delete button in the table is clicked, do the following function
@@ -144,7 +144,17 @@
     }
 
     function DisplayEditPage(){
-        console.log(location.hash)
+        //console.log(location.hash)
+
+        let page = location.hash.substring(1)
+
+        switch(page){
+            case "Add":
+                //do some work in the scope of the brackets
+                {
+                    $()
+                }
+        }
 
     }
 
