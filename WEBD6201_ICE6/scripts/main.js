@@ -66,16 +66,8 @@
             
             //if the user subscribes, store their contact in localStorage
             if(subscribeCheckbox.checked){
-                //fullName, contactNumber, and emailAddress are id= from the textboxes defined in contact.html
-                //and this page is able to get their value because we gave contact.html access to this page by adding it's script tag there
-                let contact = new Contact(fullName.value, contactNumber.value, emailAddress.value)
-                
-                //if I am able to serialize the user,
-                if (contact.serialize()){
-                    //let my key eqaul to the contacts name first letter, then add current date
-                    let key = contact.Name.substring(0, 1) + Date.now()
-                    localStorage.setItem(key, contact.serialize())
-                }
+                //
+                AddContact(fullName.value, contactNumber.value, emailAddress.value)
                 
             }
         })
@@ -126,7 +118,7 @@
 
             //Add contact button
             $("#addButton").on("click", () =>{
-                window.location.href = "edit.html#add";
+                window.location.href = "edit.html#Add";
             })
 
             //When any delete button in the table is clicked, do the following function
@@ -140,20 +132,81 @@
                 }
             })
 
+            //
+            $("button.edit").on("click", function(){
+                window.location.href = "edit.html#" + $(this).val();
+            })
+
         }
     }
 
-    function DisplayEditPage(){
-        //console.log(location.hash)
+    function AddContact(fullName, contactNumber, emailAddress){
+        let contact = new Contact(fullName, contactNumber, emailAddress)
+        
+        //if I am able to serialize the user,
+        if (contact.serialize()){
+            //let my key eqaul to the contacts name first letter, then add current date
+            let key = contact.Name.substring(0, 1) + Date.now()
+            localStorage.setItem(key, contact.serialize())
+        }
 
+    }
+
+    function DisplayEditPage(){
+        //get the spcific hash element
         let page = location.hash.substring(1)
 
         switch(page){
             case "Add":
                 //do some work in the scope of the brackets
                 {
-                    $()
+                    $("#welcome").text("WEBD6201 Demo Add Contact")
+
+                    $("#editButton").html(`<i class="fas fa-plus-circle fa-lg"></i> Add`)
+
+                    $("#editButton").on("click", (event) => {
+                        event.preventDefault()
+
+                        //get form info
+                        AddContact(fullName.value, contactNumber.value, emailAddress.value)
+
+                        //redirect
+                        window.location.href = "contact-list.html";
+                    })
+
                 }
+                break
+            default:
+                {
+                //get the contact info from localstorage
+                let contact = new Contact()
+                contact.deserialize(localStorage.getItem(page))
+
+                //display contact info in edit form
+                $("#fullName").val(contact.Name)
+                $("#contactNumber").val(contact.ContactNumber)
+                $("#emailAddress").val(contact.EmailAddress)
+
+                //when edit button is pressed, update the contact
+                $("#editButton").on("click", (event) => {
+                    event.preventDefault()
+
+                    //get all changes from the form
+                    contact.Name = $("#fullName").val()
+                    contact.ContactNumber = $("#contactNumber").val()
+                    contact.EmailAddress = $("#emailAddress").val()
+
+                    //replace the changes in localstorage
+                    localStorage.setItem(page, contact.serialize())
+
+                    //go back to contact-list.html
+                    window.location.href = "contact-list.html";
+                })
+
+                }
+
+                break
+
         }
 
     }
