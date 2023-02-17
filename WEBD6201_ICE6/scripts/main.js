@@ -89,7 +89,7 @@
             // for every key in the keys collection
             for (const key of keys) {
                 let contactData = localStorage.getItem(key) // Get localStorage data value related to the key
-                let contact = new Contact()
+                let contact = new core.Contact()
                 
                 contact.deserialize(contactData)
 
@@ -141,7 +141,7 @@
     }
 
     function AddContact(fullName, contactNumber, emailAddress){
-        let contact = new Contact(fullName, contactNumber, emailAddress)
+        let contact = new core.Contact(fullName, contactNumber, emailAddress)
         
         //if I am able to serialize the user,
         if (contact.serialize()){
@@ -179,7 +179,7 @@
             default:
                 {
                 //get the contact info from localstorage
-                let contact = new Contact()
+                let contact = new core.Contact()
                 contact.deserialize(localStorage.getItem(page))
 
                 //display contact info in edit form
@@ -241,6 +241,8 @@
                 DisplayEditPage()
                 break
         }
+        //scrolls to the top of the page, if you refresh:
+        $(window).scrollTop(0);
     }
 
     //when the window loads, run the Start function
