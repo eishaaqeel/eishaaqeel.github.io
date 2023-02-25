@@ -44,8 +44,39 @@
         console.log("Projects Page")
     }
 
+    //Test to see if full name is valid
+    function TestFullName(){
+        //.hide() so #messageArea only shows for invalid inputs
+        let messageArea = $('#messageArea').hide()
+
+        let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
+
+        $('#fullName').on("blur", function(){
+            //$(this).val is what is currently in #fullName
+            let fullNameText = $(this).val
+
+            //test to see if the fullNameText does'nt match the regex pattern,
+            if(!fullNamePattern.test(fullNameText)){
+                //then focus and select the #fullName box
+                $(this).trigger("focus").trigger("select")
+                //and then add the following class to #messageArea box
+                messageArea.addClass("alert alert-danger")
+                //and show the following error message
+                messageArea.text("Enter a valid Name, with a capitalized first name and a capitalized last name.")
+                messageArea.show()
+            }else{
+                //else, fullNameText matches the regex pattern so remove the class and hide the box
+                messageArea.removeAttr("class")
+                messageArea.hide()
+            }
+        })
+
+    }
+
     function DisplayContactUs(){
         console.log("Contact Us Page")
+
+        TestFullName()
 
         let submitButton = document.getElementById("submitButton")
         let subscribeCheckbox = document.getElementById("subscribeCheckbox")
