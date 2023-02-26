@@ -228,6 +228,14 @@
 
     }
 
+    function DisplayLoginPage(){
+        console.log("Login Page")
+    }
+
+    function DisplayRegisterPage(){
+        console.log("Registeration Page")
+    }
+
     function DisplayReferences(){
         console.log("References Page")
     }
@@ -258,6 +266,12 @@
             case "Edit - WEBD6201 Demo":
                 DisplayEditPage()
                 break
+            case "Login - WEBD6201 Demo":
+                DisplayLoginPage()
+                break
+            case "Register - WEBD6201 Demo":
+                DisplayRegisterPage()
+            break
         }
         //scrolls to the top of the page, if you refresh:
         $(window).scrollTop(0);
