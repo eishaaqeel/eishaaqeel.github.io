@@ -13,7 +13,7 @@
         // add event listener for ready state change
         XHR.addEventListener("readystatechange", () => {
             if(XHR.readyState === 4 && XHR.status === 200){
-                $('navigationBar').html(XHR.responseText)
+                $('#navigationBar').html(XHR.responseText)
             }
         })
         // connect and get data
@@ -45,7 +45,6 @@
         //.hide() so #messageArea only shows for invalid inputs
         let messageArea = $('#messageArea').hide()
 
-
         $('#' + inputFieldID).on("blur", function(){
             let inputText = $(this).val()
 
@@ -62,11 +61,15 @@
     }
 
     function ContactFormValidate(){
+        //let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
         let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
         let emailAddressPattern = /^[\w-\.]+@([\w-]+\.)+[\w-][\D]{2,10}$/g
+        //let contactNumberPattern = / /g
 
         ValidateInput("fullName", fullNamePattern, "Enter a valid Name, with a capitalized first name and a capitalized last name.")
         ValidateInput("emailAddress", emailAddressPattern, "Please enter a valid Email Address.")
+        //ValidateInput("contactNumber", contactNumberPattern, "Please enter a valid Contact Number, with 10 digits.")
+
     }
 
     function DisplayContactUs(){
