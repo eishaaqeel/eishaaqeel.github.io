@@ -6,37 +6,34 @@
 
 (function () {
 
-    function DisplayHome(){
-        // Least amount of memory heap (Regular JS):
-        /*
-        //assign "RandomButton" from the index page to randomButton 
-        let randomButton = document.getElementById("RandomButton")
-        //listen for when this button is clicked, then use the functon go to the location
-        randomButton.addEventListener("click", function(){
-            //location.href = './projects.html'
-            window.location.href = "projects.html";
+    function DisplayNavbar(){
+        // AJAX
+        // instantiate the XHR Object
+        let XHR = new XMLHttpRequest()
+        // add event listener for ready state change
+        XHR.addEventListener("readystatechange", () => {
+            if(XHR.readyState === 4 && XHR.status === 200){
+                $('navigationBar').html(XHR.responseText)
+            }
         })
-        */
+        // connect and get data
+        XHR.open("GET", "./static/header.html")
+        // send request to server to await response
+        XHR.send()
+    }
+
+    function DisplayHome(){
         
-        // Most amount of memory heap (jQuery):
         $("#RandomButton").on("click", function(){
             window.location.href = "contact.html";
         })
-
-        /*
-        // 2nd most amount of memory heap (JS querySelectorAll):
-        document.querySelectorAll("#RandomButton").forEach(element => {
-            element.addEventListener("click", () => {
-                window.location.href = "contact.html";
-            })
-        })
-        */
 
         //set the following strings as the attributes content, using template literals such as ${firstString}
         let firstString = "This is a "
         let secondString = `${firstString} main paragraph that I added through javascript.`
         //using jQuery add the above paragrah to "main"
         $("main").addClass("container").append(`<P id="MainParagraph" class="mt-3 container">${secondString}</P>`)
+
     }
 
     function DisplayProjects(){
@@ -44,54 +41,41 @@
         console.log("Projects Page")
     }
 
-    //Test to see if full name is valid
-    function TestFullName(){
+    function ValidateInput(inputFieldID, regularExpression, exception){
         //.hide() so #messageArea only shows for invalid inputs
         let messageArea = $('#messageArea').hide()
 
-        let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
 
-        $('#fullName').on("blur", function(){
-            //$(this).val() is what is currently in #fullName
-            let fullNameText = $(this).val()
+        $('#' + inputFieldID).on("blur", function(){
+            let inputText = $(this).val()
 
-            //test to see if the fullNameText does'nt match the regex pattern,
-            if(!fullNamePattern.test(fullNameText)){
-                //then focus and select the #fullName box
+            //test to see if the inputText doesn't match the regex pattern,
+            if(!regularExpression.test(inputText)) {
                 $(this).trigger("focus").trigger("select")
-                //and then add the following class to #messageArea box
-                messageArea.addClass("alert alert-danger")
-                //and show the following error message
-                messageArea.text("Enter a valid Name, with a capitalized first name and a capitalized last name.")
-                messageArea.show()
-            }else{
-                //else, fullNameText matches the regex pattern so remove the class and hide the box
-                messageArea.removeAttr("class")
-                messageArea.hide()
+                //and then add the following class to #messageArea box, and show the  specific exception
+                messageArea.addClass("alert alert-danger").text(exception).show()
+            } else{
+                //else, inputText matches the regex pattern so remove the class and hide the box
+                messageArea.removeAttr("class").hide()
             }
         })
+    }
 
+    function ContactFormValidate(){
+        let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
+        let emailAddressPattern = /^[\w-\.]+@([\w-]+\.)+[\w-][\D]{2,10}$/g
+
+        ValidateInput("fullName", fullNamePattern, "Enter a valid Name, with a capitalized first name and a capitalized last name.")
+        ValidateInput("emailAddress", emailAddressPattern, "Please enter a valid Email Address.")
     }
 
     function DisplayContactUs(){
         console.log("Contact Us Page")
 
-        TestFullName()
+        ContactFormValidate()
 
         let submitButton = document.getElementById("submitButton")
         let subscribeCheckbox = document.getElementById("subscribeCheckbox")
-
-        //LocalStorage Example:
-        /*
-        // localStorage.setItem("key", "value")
-        localStorage.setItem("Random Variable", "random variable for testing and demonstration")
-        // The value that was set for Random Variable above, will be displayed in the console
-        console.log(localStorage.getItem("Random Variable"))
-        // now remove "Random Variable" from localStorage,
-        localStorage.removeItem("Random Variable")
-        // after it's removed it will show as null in console
-        console.log(localStorage.getItem("Random Variable"))
-        */
 
         submitButton.addEventListener("click", function(){
             
@@ -184,6 +168,8 @@
     }
 
     function DisplayEditPage(){
+        ContactFormValidate()
+
         //get the spcific hash element
         let page = location.hash.substring(1)
 
@@ -254,6 +240,7 @@
             //in the case of the webpage title being "Home - WEBD6201 Demo"
             case "Home - WEBD6201 Demo":
                 DisplayHome()
+                DisplayNavbar()
                 break
             //in the case of the webpage title being "Projects - WEBD6201 Demo"
             case "Projects - WEBD6201 Demo":
