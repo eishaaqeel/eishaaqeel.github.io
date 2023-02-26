@@ -52,8 +52,8 @@
         let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
 
         $('#fullName').on("blur", function(){
-            //$(this).val is what is currently in #fullName
-            let fullNameText = $(this).val
+            //$(this).val() is what is currently in #fullName
+            let fullNameText = $(this).val()
 
             //test to see if the fullNameText does'nt match the regex pattern,
             if(!fullNamePattern.test(fullNameText)){
