@@ -61,14 +61,21 @@
     }
 
     function ContactFormValidate(){
-        //let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
         let fullNamePattern = /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,25}))*(\s|-|,)*([A-Z][a-z]{1,25})*$/g
         let emailAddressPattern = /^[\w-\.]+@([\w-]+\.)+[\w-][\D]{2,10}$/g
-        //let contactNumberPattern = / /g
+        
+        let contactNumberPattern = /^(\d{10})$|^(\d{1,2}\s)?\(?\d{3}\)?[\s|-]\d{3}[\s|-]\d{4}$/g
+        /* Valid phone number formats: 
+        * 4168937856
+        * 416 893 7856
+        * 416-893-7856
+        * (416)-893-7856
+        */
+
 
         ValidateInput("fullName", fullNamePattern, "Enter a valid Name, with a capitalized first name and a capitalized last name.")
         ValidateInput("emailAddress", emailAddressPattern, "Please enter a valid Email Address.")
-        //ValidateInput("contactNumber", contactNumberPattern, "Please enter a valid Contact Number, with 10 digits.")
+        ValidateInput("contactNumber", contactNumberPattern, "Please enter a valid Contact Number, with 10 digits.")
 
     }
 
