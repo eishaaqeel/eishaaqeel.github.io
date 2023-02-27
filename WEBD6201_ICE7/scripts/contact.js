@@ -1,3 +1,8 @@
+/*
+  Name: Eisha Aqeel
+  Last Updated: Febuary 26, 2023
+  Description: Java Script file for Contact class
+*/
 (function (core){
     class Contact{
         constructor(name, contactNumber, emailAddress){
