@@ -7,7 +7,7 @@
  */
 
 class Contact{
-    //Constructors
+    //Constructor
     constructor(name, contactNumber, emailAddress, message){
         this.Name = name
         this.ContactNumber = contactNumber

@@ -6,6 +6,24 @@
  * 
  */
 
+//Create a JavaScript Class named User, in the same file (app.js) but above the IIFE
+//This class includes firstName, lastName, email and password properties
+class User{
+  constructor(firstName, lastName, emailAddress, password){
+    this.FirstName = firstName
+    this.LastName = lastName
+    this.Email = emailAddress
+    this.Password = password
+  }
+
+  //format to string
+  toString(){
+    return `User Registered:\n First name = ${ this.FirstName } \n Last Name = ${ this.LastName } \n Email = ${ this.Email } \n Password = ${ this.Password } `
+  }
+
+}
+
+
 (function () {
     //for testing purposes:
     console.log("Page loaded")
@@ -512,6 +530,24 @@
 
     //Call method to validate all inputs on this page
     RegisterFormValidate()
+
+    
+    //get the Register button
+    let registerButton = document.getElementById("submitButton")
+    //add event listener for when the user clicks on the Register button
+    registerButton.addEventListener("click", function (event) {
+      //prevent the default form behaviour (so it won't submit the form)
+      event.preventDefault()
+
+      //Create an instance of the User class and display it in the console
+      //firstName, lastName, emailAddress, and password are from register.html
+      let user = new User(firstName.value, lastName.value, emailAddress.value, password.value)
+        console.log(user.toString())
+
+      //Finally, clear the form
+      document.getElementById("registerForm").reset();
+
+    })
 
     //Add footer to page
     DisplayFooter()
