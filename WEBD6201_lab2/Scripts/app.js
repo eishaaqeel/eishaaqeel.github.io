@@ -550,8 +550,8 @@
         //Add the a to the li 
         hrLink.appendChild(hrAnchor)
 
-        //Get the navbar last li
-        let aboutLink = $(".navbar-nav li:last")
+        //Make HR link show before the navbar's second last link
+        let aboutLink = $(".navbar-nav li:nth-last-child(2)")
         //insert hr link before it
         aboutLink.before(hrLink)
     }
