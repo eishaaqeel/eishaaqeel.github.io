@@ -502,9 +502,62 @@
     }
 
   function DisplayRegisterPage() {
+    //create a div element with an id of "ErrorMessage" 
+    //This will be used to display errors if the user enters invalid data in the input fields of the registerForm.
+    let registerPageErrors = document.createElement("div")
+    registerPageErrors.setAttribute("id", "ErrorMessage")
+    //add this ErrorMessage box before "mainContent"
+    let pageBody = document.getElementById("mainContent")
+    pageBody.prepend(registerPageErrors)
 
-    // add footer to page
+    //Call method to validate all inputs on this page
+    RegisterFormValidate()
+
+    //Add footer to page
     DisplayFooter()
+  }
+
+  //Validate Input function that takes in the id of the input field, the regex, and the exception message
+  function ValidateInput(inputFieldID, regularExpression, exception){
+    //ErrorMessage should be hidden when the user first navigates to the register.html page
+    let messageArea = $('#ErrorMessage').hide()
+
+    $('#' + inputFieldID).on("blur", function(){
+        let inputText = $(this).val()
+        //test to see if the inputText doesn't match the regex pattern,
+        if(!regularExpression.test(inputText)) {
+            $(this).trigger("focus").trigger("select")
+            //and then add the following class to #messageArea box, and show the  specific exception
+            messageArea.addClass("alert alert-danger").text(exception).show()
+        } else{
+            //else, inputText matches the regex pattern so remove the class and hide the box
+            messageArea.removeAttr("class").hide()
+        }
+    })
+  }
+
+  //Validate the Register Page Form using specific regex patterns and our ValidateInput function 
+  function RegisterFormValidate(){
+
+    //For the names: No whitespaces \S and at minimum length is 2 characters \w with {1}
+    let firstNamePattern = /^[\w\S]{1}[\w\S]+$/g
+    let lastNamePattern = /^[\w\S]{1}[\w\S]+$/g
+
+    //Email minimum length is 8 and an @ symbol has to be present
+    //To make the length at least 8 character, I'm making users input at least 2 character before the @, after the @, and after the dot.
+    //Valid email example:  xx@xx.xx
+    let emailAddressPattern = /^([\w-\.]{2,})+@(([\w-]{2,})+\.)+[\w-][\D]{1,10}$/g
+
+    //Password should 6 or more characters in length and the dot means that the password can contain any type of characters
+    let passwordPattern = /^.{6,}$/g
+    //Both the Password and Confirm password inputs should be the same string
+    let confirmPassword = passwordPattern
+    
+    ValidateInput("firstName", firstNamePattern, "Please enter a valid First Name. It must contain least 2 characters and no blank spaces.")
+    ValidateInput("lastName", lastNamePattern, "Please enter a valid Last Name. It must contain least 2 characters and no blank spaces.")
+    ValidateInput("emailAddress", emailAddressPattern, "Please enter a valid Email Address with 8 or more characters with the format: xx@xx.ca")
+    ValidateInput("password", passwordPattern, "Please enter a valid Password with at least 6 characters.")
+    ValidateInput("confirmPassword", confirmPassword, "Confirm Password has to match the Password entered.")
   }
 
 
