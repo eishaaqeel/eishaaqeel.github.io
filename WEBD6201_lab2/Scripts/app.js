@@ -323,11 +323,11 @@
         downloadResume2.prepend(downloadButton2Icon)
 
         //set buttons href attribute & img src
-        cardImg1.src = "./Content/Images/EishaLinkdinPic2.jpg"
-        cardImg2.src = "./Content/Images/AngelicaPic2.jpg"
+        cardImg1.src = "./Content/Images/EishaPic.jpg"
+        cardImg2.src = "./Content/Images/AngelicaPic.jpg"
         cardImg1.alt = "Eisha Aqeel Profile Pic"
         cardImg2.alt = "Angelica Kusik Profile Pic"
-        downloadResume1.href = "./Resume/eishaAqeelGeneralResume.pdf"
+        downloadResume1.href = "./Resume/Eisha_Resume.pdf"
         downloadResume2.href = "./Resume/angelicaKusikGeneralResume.pdf"
 
         //Get cards and add image
@@ -495,6 +495,18 @@
         DisplayFooter()
     }
 
+    function DisplayLoginPage() {
+
+      // add footer to page
+      DisplayFooter()
+    }
+
+  function DisplayRegisterPage() {
+
+    // add footer to page
+    DisplayFooter()
+  }
+
 
     /**** Footer ******/
 
@@ -514,7 +526,10 @@
         footerSection.innerHTML = '<div class="container-fluid">' 
                                 + '<p class="">Copyright &copy; <span id="year"></span></p>' 
                                 + '<p>Build with <i class="fa-sharp fa-solid fa-heart"></i> by <a class="footer-signature" '
-                                + 'href="https://www.linkedin.com/in/angelica-kusik/" target="_blank">Eisha Aqeel &amp; Angelica Kusik</a></p>'
+                                + 'href="https://www.linkedin.com/in/angelica-kusik/" target="_blank">Angelica Kusik '
+                                + '&amp; '
+                                + '<a class="footer-signature" href="https://www.linkedin.com/in/eisha-aqeel/" target="_blank">Eisha Aqeel'
+                                + '</a></p>'
                                 + '</div>';
         
         // get the page body tag - we only have one but because getElementByTagName returns an array I added the [0]
@@ -578,6 +593,12 @@
             break;
           case "Human Resources Page":
             DisplayHumanResourcesPage()
+            break;
+          case "Login Page":
+            DisplayLoginPage()
+            break;
+          case "Register Page":
+            DisplayRegisterPage()
             break;
           default:
           console.log("Something went wrong in the Start Function")
