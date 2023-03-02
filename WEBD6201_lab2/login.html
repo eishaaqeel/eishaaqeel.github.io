@@ -1,0 +1,138 @@
+<!--
+  Name: Eisha Aqeel, Angelica Kusik
+  Last Updated: March 2, 2023
+  Description: WEBD6201 Labs login.html
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login Page</title>
+  <!--Boostrap 5-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!--Fontawesome Icons Library -->
+  <script src="https://kit.fontawesome.com/de73bfd3a4.js" crossorigin="anonymous"></script>
+  <!--Style Sheets-->
+  <link rel="stylesheet" href="Content/app.css">
+  <link rel="stylesheet" href="./Content/style.css">
+</head>
+
+<body>
+  <!--Start of Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <i class="fa-solid fa-ghost fa-2x"></i>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fa-solid fa-house"></i>
+                Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">
+                <i class="fa-solid fa-box-open"></i>
+                Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">
+                <i class="fa-solid fa-bell-concierge"></i>
+                Services
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">
+              <i class="fa-sharp fa-solid fa-ghost"></i>  
+                About Us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">
+                <i class="fa-solid fa-phone"></i>
+                Contact Us
+            </a>
+          </li>
+            
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="login.html">
+                <i class="fa-regular fa-circle-user"></i>
+                Login/Logout
+            </a>
+           </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End of Navbar -->
+  
+  <div class="container">
+    <header class="mt-3">
+        <h1 id="welcome"> <i class="fa-solid fa-address-book"></i> Login </h1>
+    </header>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container" id="mainContent">
+    <div class="row">
+        <div class="offset-md-3 col-md-6 col-sm-12">
+              <div class="login" id="contentArea">
+                  <h1 class="display-4">Login</h1>
+                  <form id="loginForm" novalidate>
+                    
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-user">
+                          </i>
+                        </span>
+                        <input type="text" class="form-control" id="userName" name="userName"  required
+                        value="" placeholder="Enter your username">
+                      </div>
+                     
+                    </div>
+
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="fa fa-lock">
+                          </i>
+                        </span>
+                        <input type="password" class="form-control" id="password" name="password"  required
+                        value="" placeholder="Enter your password">
+                      </div>
+                     
+                    </div>                                        
+                    <div class="text-right">
+                      <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Login</button>
+                    </div>
+                  </form>
+                 
+              </div>
+              <p class="text-center text-muted small">
+                Don't have an account? 
+                <a href="register.html">Register Here!</a>
+              </p>
+        </div>
+    </div>
+  </main>
+
+  <!--jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!--Bootstrap Bundle with Popper-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!--JavaScript-->
+  <script src="./Scripts/app.js"></script>
+  <script src="./Scripts/contact.js"></script>
+</body>
+
+</html>
