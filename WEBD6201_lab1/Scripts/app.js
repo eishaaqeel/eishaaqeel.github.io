@@ -495,7 +495,6 @@
         DisplayFooter()
     }
 
-
     /**** Footer ******/
 
     /*
