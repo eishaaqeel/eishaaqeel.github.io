@@ -557,7 +557,7 @@ class User{
           let previousUsername = $("#usernameLi")
           previousUsername.remove();          
 
-          console.log(username)
+          //console.log(username)
 
           //Create a li element to insert the username in the navbar 
           let usernameLi = document.createElement("li")
@@ -603,7 +603,7 @@ class User{
       registerButton.addEventListener("click", function (event) {
         //prevent the default form behaviour (so it won't submit the form)
         let confirmPassword = $("#confirmPassword").val()
-        console.log(confirmPassword)
+        //console.log(confirmPassword)
         event.preventDefault()
         if(firstName.value == "" || lastName.value == "" || emailAddress.value == "" || password.value == "" || confirmPassword == "")
         {
