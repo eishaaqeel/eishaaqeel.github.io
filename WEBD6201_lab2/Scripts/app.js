@@ -533,40 +533,49 @@ class User{
 
       // Get the username
       let username = ""
+      let password = ""
 
       //add event listener for when the user clicks on the Register button
       submitButton.addEventListener("click", function (event) {
+
+        username = $("#userName").val()
+        password = $("#password").val()
+
+        let previousUsername = $("#usernameLi")
+        previousUsername.text(" ")         
+
         //prevent the default form behaviour (so it won't submit the form)
         event.preventDefault()
 
-        // Get the username li element from the navbar if it's there from previous user and set text to blank
-        let previousUsername = $("#usernameLi")
+        if(username == "" || password == "")
+        {
+          //and then add the following class to #messageArea box, and show the  specific exception
+          $('#ErrorMessage').addClass("alert alert-danger").text("You must fill out all fields.").show()
+          
+        } else { 
+          // Get the username li element from the navbar if it's there from previous user and remove it
+          let previousUsername = $("#usernameLi")
+          previousUsername.remove();          
 
-        if (previousUsername.text() != ""){
-          previousUsername.text(" ") 
-        }
+          console.log(username)
 
-        // Get the username
-        username = $("#userName").val()
-        //console.log(username)
+          //Create a li element to insert the username in the navbar 
+          let usernameLi = document.createElement("li")
+          usernameLi.setAttribute("class", "nav-item navbar-text")
+          usernameLi.setAttribute("id", "usernameLi")
 
-        //Create a li element to insert the username in the navbar 
-        let usernameLi = document.createElement("li")
-        usernameLi.setAttribute("class", "nav-item navbar-text")
-        usernameLi.setAttribute("id", "usernameLi")
+          //Set the text property of the li to show the username
+          usernameLi.innerHTML = username
 
-        //Set the text property of the li to show the username
-        usernameLi.innerHTML = username
+          //Get the contact us li element from the navbar
+          let contactUs = $(".navbar-nav li:nth-last-child(2)")
 
-        //Get the contact us li element from the navbar
-        let contactUs = $(".navbar-nav li:nth-last-child(2)")
+          //Insert the username link before it
+          contactUs.after(usernameLi)
 
-        //Insert the username link before it
-        contactUs.after(usernameLi)
-
-        //Finally, clear the form
-        document.getElementById("loginForm").reset();
-
+          //Finally, clear the form
+          document.getElementById("loginForm").reset();
+          }        
       })
 
 
@@ -583,24 +592,33 @@ class User{
       let pageBody = document.getElementById("mainContent")
       pageBody.prepend(registerPageErrors)
 
-      //Call method to validate all inputs on this page
-      RegisterFormValidate()
-      
       //get the Register button
       let registerButton = document.getElementById("submitButton")
+      //let registerButton = $("#submitButton")
+
+      //Call method to validate all inputs on this page. If validation is successfull let user register
+      RegisterFormValidate()      
+      
       //add event listener for when the user clicks on the Register button
       registerButton.addEventListener("click", function (event) {
         //prevent the default form behaviour (so it won't submit the form)
+        let confirmPassword = $("#confirmPassword").val()
+        console.log(confirmPassword)
         event.preventDefault()
-
-        //Create an instance of the User class and display it in the console
-        //firstName, lastName, emailAddress, and password are from register.html
-        let user = new User(firstName.value, lastName.value, emailAddress.value, password.value)
-          console.log(user.toString())
-
-        //Finally, clear the form
-        document.getElementById("registerForm").reset();
-
+        if(firstName.value == "" || lastName.value == "" || emailAddress.value == "" || password.value == "" || confirmPassword == "")
+        {
+          //and then add the following class to #messageArea box, and show the  specific exception
+          $('#ErrorMessage').addClass("alert alert-danger").text("You must fill out all fields.").show()
+          
+        } else { 
+          //Create an instance of the User class and display it in the console
+          //firstName, lastName, emailAddress, and password are from register.html
+          let user = new User(firstName.value, lastName.value, emailAddress.value, password.value)
+            console.log(user.toString())
+          //Finally, clear the form
+          document.getElementById("registerForm").reset();
+        }
+        
       })
 
       //Add footer to page
@@ -619,9 +637,15 @@ class User{
               $(this).trigger("focus").trigger("select")
               //and then add the following class to #messageArea box, and show the  specific exception
               messageArea.addClass("alert alert-danger").text(exception).show()
+
+              //disable register button
+              $("#submitButton").prop('disabled', true);
           } else{
               //else, inputText matches the regex pattern so remove the class and hide the box
               messageArea.removeAttr("class").hide()
+
+              // enable register button
+              $("#submitButton").prop('disabled', false);
           }
       })
     }
@@ -641,13 +665,43 @@ class User{
       //Password should 6 or more characters in length and the dot means that the password can contain any type of characters
       let passwordPattern = /^.{6,}$/g
       //Both the Password and Confirm password inputs should be the same string
-      let confirmPassword = passwordPattern
-      
-      ValidateInput("firstName", firstNamePattern, "Please enter a valid First Name. It must contain least 2 characters and no blank spaces.")
+      //let confirmPasswordPattern = passwordPattern
+
+      ValidateInput("firstName", firstNamePattern,  "Please enter a valid First Name. It must contain least 2 characters and no blank spaces.")
       ValidateInput("lastName", lastNamePattern, "Please enter a valid Last Name. It must contain least 2 characters and no blank spaces.")
-      ValidateInput("emailAddress", emailAddressPattern, "Please enter a valid Email Address with 8 or more characters with the format: xx@xx.ca")
-      ValidateInput("password", passwordPattern, "Please enter a valid Password with at least 6 characters.")
-      ValidateInput("confirmPassword", confirmPassword, "Confirm Password has to match the Password entered.")
+      ValidateInput("emailAddress", emailAddressPattern, "Please enter a valid Email Address with 8 or more characters with the format: xx@xx.ca") 
+      ValidateInput("password", passwordPattern, "Please enter a valid Password with at least 6 characters.") 
+      ConfirmPasswordValidate("password", "confirmPassword", "Confirm Password has to match the Password entered.")
+
+    }
+
+    function ConfirmPasswordValidate(passwordId, confirmPasswordId, exception) {
+
+      //ErrorMessage should be hidden when the user first navigates to the register.html page
+      let messageArea = $('#ErrorMessage').hide()
+
+      $('#' + confirmPasswordId).on("blur", function(){
+        let password = $('#' + passwordId).val()
+        let confirmPassword = $(this).val()
+
+        //check if password and confirm password are the same
+        if(password != confirmPassword) {
+            $(this).trigger("focus").trigger("select")
+
+            //and then add the following class to #messageArea box, and show the  specific exception
+            messageArea.addClass("alert alert-danger").text(exception).show()
+
+            //disable register button
+            $("#submitButton").prop('disabled', true);
+
+        } else{
+            //else, confirmPassword matches password, so remove the class and hide the box
+            messageArea.removeAttr("class").hide()
+
+            // enable register button
+            $("#submitButton").prop('disabled', false);
+        }
+      })
     }
 
     //Validate the Login Page Form using specific regex patterns and our ValidateInput function 
@@ -656,7 +710,6 @@ class User{
       //For the username: First letter must be capitalized, minimum 2 characters, accepts only first name, or
       // full name separated by spaces, comma or dash. No numbers or special characters allowed.
       let fullNamePattern =  /^([A-Z][a-z]{1,25})((\s|,|-)([A-Z][a-z]{1,}))*(\s|,|-)*([A-Z][a-z]{1,})*$/g
-
       //Password should 6 or more characters in length and the dot means that the password can contain any type of characters
       let loginPasswordPattern = /^.{6,}$/g
     
