@@ -298,8 +298,8 @@
                       + "I am passionate about software and database development. Currently, I am looking for opportunities to use my skills to build real-world applications. "
                       + "Check out my resume below; I would be happy to intern for you this summer."
         let card2Text = "Hi! My name is Angelica Kusik and I am a computer programming student at Durham College, soon to graduate." 
-                    + " I am excited to further my career in the software development industry and am actively seeking job opportunities in this field. I am confident that my experience, " 
-                    + "both in academia and in the workforce, will make me a valuable asset to any company. I am eager to continue learning and growing as a developer and am excited to see where my passion for technology will take me."
+                    + " I am excited to further my career in the software development industry and am actively seeking job opportunities in this field. I am confident that my experience," 
+                    + " both in academia and in the workforce, will make me a valuable asset to any company. I am eager to continue learning and growing as a developer and am excited to see where my passion for technology will take me."
 
         //Add text value to elements
         aboutUsHeading1.textContent = aboutUsTitle
