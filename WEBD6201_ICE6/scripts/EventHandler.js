@@ -6,7 +6,6 @@
 
 var welcomeLabel = document.getElementById("welcome");
 var displayEvent = document.getElementById("displayEvent");
-
 var userDisplay = document.getElementById("userDisplay");
 var passDisplay = document.getElementById("passDisplay");
 
