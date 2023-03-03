@@ -21,11 +21,11 @@
 
 .input-group .form-control
 {
-    position:relative;
+    /* position:relative;
     z-index: 2;
     float:left;
     width: 100%;
-    margin-bottom: 0;
+    margin-bottom: 0; */
 }
 
 .input-group .form-control:last-child
