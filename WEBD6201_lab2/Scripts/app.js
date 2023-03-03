@@ -8,6 +8,11 @@
 
 //Create a JavaScript Class named User, in the same file (app.js) but above the IIFE
 //This class includes firstName, lastName, email and password properties
+
+/**
+ * User Class
+ * Creates new user objects based on the information entered on the register form by the user.
+ */
 class User{
   constructor(firstName, lastName, emailAddress, password){
     this.FirstName = firstName
@@ -31,7 +36,11 @@ class User{
     //No matter which page loads, change products navbar link
     ChangeNavbarLink()
 
-
+    /**
+     * DisplayHomePage
+     * Loads part of the home page content dynamically and has all the code that provides the behaviour
+     * of the elements in this page.
+     */
     function DisplayHomePage() {
 
         /*** Home Section ****/
@@ -139,6 +148,12 @@ class User{
 
     }
 
+    /**
+     * DisplayProjectsPage
+     * 
+     * Loads part of the projects page content dynamically and has all the code that provides the behaviour
+     * of the elements in this page.
+     */
     function DisplayProjectsPage() {
 
         /******* Projects Section *******/
@@ -239,6 +254,12 @@ class User{
         DisplayFooter()
     }
 
+    /**
+     * DisplayAboutUsPage
+     * 
+     * Loads part of the about us page content dynamically and has all the code that provides the behaviour
+     * of the elements in this page.
+     */
     function DisplayAboutUsPage() {
 
         /******* About Us Section *******/
@@ -378,6 +399,12 @@ class User{
         DisplayFooter()
     }
 
+    /**
+     * DisplayServicesPage
+     * 
+     * Loads part of the services page content dynamically and has all the code that provides the behaviour
+     * of the elements in this page.
+     */
     function DisplayServicesPage() {
       /******* Services Section *******/
 
@@ -470,6 +497,13 @@ class User{
         DisplayFooter()
     }
 
+    /**
+     * DisplayContactUsPage
+     * 
+     * Loads part of the contact us page content dynamically and the event handler that provides
+     * the functionality of the submit button on the contact us form, including retrieving information 
+     * from the form to create a new contact object.
+     */
     function DisplayContactUsPage() {
         
       /******* Contact Us Section *******/
@@ -507,12 +541,23 @@ class User{
         DisplayFooter()
     }
 
+    /**
+     * DisplayHumanResourcesPage
+     * 
+     * Loads the human resources footer dynamically. Page does not have any additional content in it.
+     */
     function DisplayHumanResourcesPage() {
 
         //Lastly add footer to page
         DisplayFooter()
     }
 
+    /**
+     * DisplayLoginPage
+     * 
+     * Loads some of the Login pages elements dynamically and has all the code that provides the functionality to the 
+     * Login form such as retrieving information from the form, validating it and displaying the username on the navbar.
+     */
     function DisplayLoginPage() {
 
       // Validate information entered on the Login Form
@@ -583,6 +628,13 @@ class User{
       DisplayFooter()
     }
 
+    /**
+     * DisplayRegisterPage
+     * 
+     * Loads some of the Register page elements dynamically and has all the code that provides the functionality to the 
+     * Register form such as retrieving information from the form, validating it and using it to create an user object that
+     * is displayed on the console.
+     */
     function DisplayRegisterPage() {
       //create a div element with an id of "ErrorMessage" 
       //This will be used to display errors if the user enters invalid data in the input fields of the registerForm.
@@ -625,7 +677,17 @@ class User{
       DisplayFooter()
     }
 
-    //Validate Input function that takes in the id of the input field, the regex, and the exception message
+    /**
+     * ValidateInput
+     * 
+     * Takes in the id of the input field, the regex, and the exception message and use the id of the input field to retrieve the
+     * data from the form and check it against the regex to see if it is valid. If data is not valid it shows a div with the error message 
+     * passed to the function and disables the submit button. It hides the error message when the user enter valid information in the field being 
+     * checked and enables the submit button again.
+     * @param {*} inputFieldID 
+     * @param {*} regularExpression 
+     * @param {*} exception 
+     */
     function ValidateInput(inputFieldID, regularExpression, exception){
       //ErrorMessage should be hidden when the user first navigates to the register.html page
       let messageArea = $('#ErrorMessage').hide()
@@ -650,7 +712,13 @@ class User{
       })
     }
 
-    //Validate the Register Page Form using specific regex patterns and our ValidateInput function 
+  
+    /**
+     * RegisterFormValidate
+     * 
+     * Defines the regex patterns to validate the data of each input field on the register form and calls the 
+     * ValidateInput and ConfirmPasswordValidate functions to validate it.
+     */
     function RegisterFormValidate(){
 
       //For the names: No whitespaces \S and at minimum length is 2 characters \w with {1}
@@ -675,6 +743,17 @@ class User{
 
     }
 
+    /**
+     * ConfirmPasswordValidate
+     * 
+     * Takes in the id of the password and confirm password fields and the exception message, and uses the ids
+     * to retrieve the passwords entered in these fields to compare if they are the same. If passwords don't macth
+     * shows a div with the error message being passed to the function and disables the submit button. When passwords match, 
+     * hides the error message and enables the submit button. 
+     * @param {*} passwordId 
+     * @param {*} confirmPasswordId 
+     * @param {*} exception 
+     */
     function ConfirmPasswordValidate(passwordId, confirmPasswordId, exception) {
 
       //ErrorMessage should be hidden when the user first navigates to the register.html page
@@ -704,7 +783,12 @@ class User{
       })
     }
 
-    //Validate the Login Page Form using specific regex patterns and our ValidateInput function 
+    /**
+     * LoginFormValidate
+     * 
+     * Defines the regex patterns to validate the data of each input field on the login form and calls the 
+     * ValidateInput function to validate it.
+     */
     function LoginFormValidate(){
 
       //For the username: First letter must be capitalized, minimum 2 characters, accepts only first name, or
@@ -717,16 +801,12 @@ class User{
       ValidateInput("password", loginPasswordPattern, "Please enter a valid Password with at least 6 characters.")
     }
 
-
-
-    /**** Footer ******/
-
     /*
     * DisplayFooter
+
     * Creates a footer element (instead of using a Navbar element I decided to use a footer because I thought it would be more descriptive, navbars are usually
     * used at the top of the page, but I added the fixed-bottom class as required.) - Angelica
     */
-    
     function DisplayFooter() {
 
         let footerSection = document.createElement("section")
@@ -753,6 +833,12 @@ class User{
 
     }
 
+    /**
+     * ChangeNavbarLink
+     * 
+     * Retrieves the products link hard coded in the navbar and changes it to
+     * be a link to the projects page instead.
+     */
     function ChangeNavbarLink() {
         //Changing the products link:
         //Get the products list item from the navbar
@@ -784,6 +870,12 @@ class User{
 
     
     /**** On Load ******/
+    /**
+     * Start
+     * 
+     * Calls the function that loads the content of each respective page when the page loads based
+     * on the title of the page.
+     */
     function Start() {
 
         switch (document.title) {
