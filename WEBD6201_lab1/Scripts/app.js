@@ -327,7 +327,7 @@
         cardImg2.src = "./Content/Images/AngelicaPic2.jpg"
         cardImg1.alt = "Eisha Aqeel Profile Pic"
         cardImg2.alt = "Angelica Kusik Profile Pic"
-        downloadResume1.href = "./Resume/eishaAqeelGeneralResume.pdf"
+        downloadResume1.href = "./Resume/Eisha_Resume.pdf"
         downloadResume2.href = "./Resume/angelicaKusikGeneralResume.pdf"
 
         //Get cards and add image
