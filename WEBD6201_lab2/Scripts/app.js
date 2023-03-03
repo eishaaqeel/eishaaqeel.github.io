@@ -1,7 +1,7 @@
 /**
  * @author Eisha Aqeel #100798173, Angelica Kusik #100849912
  * @version 2.0.0
- * @since March 2, 2023
+ * @since March 3, 2023
  * @description WEBD6201 Labs - Js Functionality
  * 
  */
