@@ -42,6 +42,8 @@
         $('#navigationBar').html(html_data)
                 //find this anchor tag and see if it contains 
                 $(`li>a:contains(${document.title})`).addClass('active')
+
+        CheckLogin()
     }
 
     
@@ -122,6 +124,7 @@
     }
 
     function DisplayContactList(){
+
         console.log("Contact List Page")
 
         //if there is something in localStorage
@@ -263,6 +266,70 @@
 
     function DisplayLoginPage(){
         console.log("Login Page")
+
+        let messageArea = $('#messageArea')
+        messageArea.hide()
+
+        //click functionality
+        $('#loginButton').on('click', function(){
+            let success = false
+
+            //
+            let newUser = new core.User()
+
+            //
+            $.get('./Data/users.json', function(data){
+                //
+                for (const user of data.users){
+                    //
+                    if (username.value == user.Username && password.value == user.Password){
+                        newUser.fromJSON(user)
+                        success = true
+                        break
+                    }
+
+                }
+                //
+                if(success){
+                    //add user to sessionStorage
+                    sessionStorage.setItem('user', newUser.serialize())
+
+                    //hide any error messages
+                    messageArea.removeAttr('class').hide()
+                    //redirect
+                    window.location.href = "contact-list.html";
+
+
+                } else{
+                    $('#username').trigger('focus').trigger('select')
+                    messageArea.addClass('alert alert-danger').text('Error: Username and Password mismatch!').show()
+                }
+                })
+            
+        })
+
+        $('#cancelButton').on('click', function(){
+            //
+            document.form[0].reset()
+            ///
+            window.location.href = "index.html";
+        })
+
+    }
+
+    function CheckLogin(){
+        //
+        if (sessionStorage.getItem("user")){
+            $('#login').html(
+                `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
+            )
+
+            $('#logout').on('click', function(){
+                sessionStorage.clear()
+                window.location.href = "login.html";
+            })
+
+        }
     }
 
     function DisplayRegisterPage(){
@@ -277,7 +344,7 @@
         console.log("Application Started Successfully!")
 
         AjaxRequest("GET", "./static/header.html", LoadHeader)
-        
+
         //switch case statment
         switch (document.title){
             //in the case of the webpage title being "Home"
