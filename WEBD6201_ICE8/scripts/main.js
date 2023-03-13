@@ -116,7 +116,6 @@
             
             //if the user subscribes, store their contact in localStorage
             if(subscribeCheckbox.checked){
-                //
                 AddContact(fullName.value, contactNumber.value, emailAddress.value)
                 
             }
@@ -183,7 +182,6 @@
                 }
             })
 
-            //
             $("button.edit").on("click", function(){
                 window.location.href = "edit.html#" + $(this).val();
             })
@@ -274,22 +272,21 @@
         $('#loginButton').on('click', function(){
             let success = false
 
-            //
+            //create an empty user object
             let newUser = new core.User()
 
-            //
+            //use JQuery to load users.json file and read over it
             $.get('./Data/users.json', function(data){
-                //
+                //iterate over every user in the users.json file
                 for (const user of data.users){
-                    //
+                    //check if the username and password match the user data passed in from users.json
                     if (username.value == user.Username && password.value == user.Password){
                         newUser.fromJSON(user)
                         success = true
                         break
                     }
-
                 }
-                //
+                //if username and password matched (success = true) -> perform the login sequence
                 if(success){
                     //add user to sessionStorage
                     sessionStorage.setItem('user', newUser.serialize())
@@ -299,8 +296,8 @@
                     //redirect
                     window.location.href = "contact-list.html";
 
-
                 } else{
+                    //display error message
                     $('#username').trigger('focus').trigger('select')
                     messageArea.addClass('alert alert-danger').text('Error: Username and Password mismatch!').show()
                 }
@@ -309,17 +306,18 @@
         })
 
         $('#cancelButton').on('click', function(){
-            //
+            //clear the form
             document.form[0].reset()
-            ///
+            //return to home page
             window.location.href = "index.html";
         })
 
     }
 
     function CheckLogin(){
-        //
+        //if the user is logged in, then
         if (sessionStorage.getItem("user")){
+            //switch the login button to logout
             $('#login').html(
                 `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
             )
@@ -329,6 +327,10 @@
                 window.location.href = "login.html";
             })
 
+            //show "show contact list button" button
+            $('#contactListButton').html(
+                `<a href="./contact-list.html" class="btn btn-primary btn-lg"><i class="fas fa-users fa-lg"></i> Show Contact List </a>`
+            )
         }
     }
 
