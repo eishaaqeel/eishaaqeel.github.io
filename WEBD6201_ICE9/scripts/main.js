@@ -166,11 +166,6 @@
 
             contactList.innerHTML = data
 
-            //Add contact button
-            $("#addButton").on("click", () =>{
-                window.location.href = "edit.html#Add";
-            })
-
             //When any delete button in the table is clicked, do the following function
             $("button.delete").on("click", function(){
                 //first confirm if they want to delete
@@ -187,6 +182,12 @@
             })
 
         }
+
+        //Add contact button
+        $("#addButton").on("click", () =>{
+            window.location.href = "edit.html#Add";
+        })
+
     }
 
     function AddContact(fullName, contactNumber, emailAddress){
