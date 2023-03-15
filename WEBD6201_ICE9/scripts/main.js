@@ -46,6 +46,22 @@
         CheckLogin()
     }
 
+    /**
+     * Loads content
+     * @returns {void}
+     */
+    function LoadContent(){
+
+    }
+
+    /**
+     * Loads footer
+     * @returns {void}
+     */
+    function LoadFooter(){
+        
+    }
+
     
     function DisplayHome(){
         
@@ -166,11 +182,6 @@
 
             contactList.innerHTML = data
 
-            //Add contact button
-            $("#addButton").on("click", () =>{
-                window.location.href = "edit.html#Add";
-            })
-
             //When any delete button in the table is clicked, do the following function
             $("button.delete").on("click", function(){
                 //first confirm if they want to delete
@@ -187,6 +198,12 @@
             })
 
         }
+
+        //Add contact button
+        $("#addButton").on("click", () =>{
+            window.location.href = "edit.html#Add";
+        })
+
     }
 
     function AddContact(fullName, contactNumber, emailAddress){
@@ -342,13 +359,30 @@
         console.log("References Page")
     }
 
+    function Display404Page(){
+        console.log("404 Page")
+    }
+
+    /**
+     * 
+     * @returns {function}
+     */
+    function ActiveLinkCallBack(){
+
+    }
+
     function Start() {
         console.log("Application Started Successfully!")
 
-        AjaxRequest("GET", "./static/header.html", LoadHeader)
+        //AjaxRequest("GET", "./static/header.html", LoadHeader)
+        LoadHeader()
+
+        LoadContent()
+
+        LoadFooter()
 
         //switch case statment
-        switch (document.title){
+        /* switch (document.title){
             //in the case of the webpage title being "Home"
             case "Home":
                 DisplayHome()
@@ -376,7 +410,7 @@
             case "Register":
                 DisplayRegisterPage()
             break
-        }
+        } */
         //scrolls to the top of the page, if you refresh:
         $(window).scrollTop(0);
     }
