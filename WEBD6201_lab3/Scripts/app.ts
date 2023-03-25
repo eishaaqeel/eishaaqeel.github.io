@@ -2,11 +2,12 @@
 // AKA -- Anonymous Self-Executing Function
 (function()
 {
+
     function AuthGuard(): void
     {
         let protected_routes: string[] = [
             "contact-list",
-            "task-list"
+            "task-list" //TODO: Not sure if this is what 2d meant!
         ];
     
         if(protected_routes.indexOf(router.ActiveLink) > -1)
@@ -41,6 +42,8 @@
         $(`li>a:contains(${document.title})`).addClass("active"); // updates the Active link on Navigation items
 
         CheckLogin();
+
+        CheckProtectedLinks();
 
         LoadContent();
     }
@@ -111,6 +114,9 @@
             AddNavigationEvents();
             
             CheckLogin();
+
+            CheckProtectedLinks();
+
         });
     }
 
@@ -413,6 +419,28 @@
         }
     }
 
+    function CheckProtectedLinks(): void {
+
+        // if user is not logged in
+        if(!sessionStorage.getItem("user"))
+        {
+            // hide the contact-list and task-list links
+            $("#contact-list").hide();
+
+            $("#task-list").hide()
+        }
+        else {
+
+            // show the contact-list and task-list links
+            $("#contact-list").show();
+
+            $("#task-list").show()
+
+            AddNavigationEvents()
+        }
+
+    }
+
     function DisplayLoginPage(): void 
     {
         console.log("Login Page");
@@ -619,9 +647,9 @@
         console.log("App Started!");
 
         LoadHeader();
-
+        console.log("LoadHeader!");
         LoadLink("home");
-
+        console.log("LoadLink!");
         LoadFooter();
     }
 

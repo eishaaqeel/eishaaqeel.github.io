@@ -73,7 +73,7 @@ namespace core
         // utility methods
 
         // TODO: need to fix the Return type
-        toJSON()
+        toJSON() 
         {
             return {
                 "DisplayName": this.DisplayName,

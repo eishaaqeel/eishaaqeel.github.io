@@ -2,7 +2,8 @@
 (function () {
     function AuthGuard() {
         let protected_routes = [
-            "contact-list"
+            "contact-list",
+            "task-list"
         ];
         if (protected_routes.indexOf(router.ActiveLink) > -1) {
             if (!sessionStorage.getItem("user")) {
@@ -21,6 +22,7 @@
         });
         $(`li>a:contains(${document.title})`).addClass("active");
         CheckLogin();
+        CheckProtectedLinks();
         LoadContent();
     }
     function AddNavigationEvents() {
@@ -57,6 +59,7 @@
             $("header").html(html_data);
             AddNavigationEvents();
             CheckLogin();
+            CheckProtectedLinks();
         });
     }
     function LoadContent() {
@@ -228,6 +231,17 @@
             });
         }
     }
+    function CheckProtectedLinks() {
+        if (!sessionStorage.getItem("user")) {
+            $("#contact-list").hide();
+            $("#task-list").hide();
+        }
+        else {
+            $("#contact-list").show();
+            $("#task-list").show();
+            AddNavigationEvents();
+        }
+    }
     function DisplayLoginPage() {
         console.log("Login Page");
         let messageArea = $("#messageArea");
@@ -351,7 +365,9 @@
     function Start() {
         console.log("App Started!");
         LoadHeader();
+        console.log("LoadHeader!");
         LoadLink("home");
+        console.log("LoadLink!");
         LoadFooter();
     }
     window.addEventListener("load", Start);
