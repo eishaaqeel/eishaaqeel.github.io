@@ -1,21 +1,14 @@
-/**
-  Name: Eisha Aqeel, Angelica Kusik
-  Since: March 24, 2023
-  Last Updated: March 25, 2023
-  Description: WEBD6201 Lab 3 - app.ts
-**/
-
 // IIFE -- Immediately Invoked Function Expression
 // AKA -- Anonymous Self-Executing Function
 (function()
 {
-
     function AuthGuard(): void
     {
         let protected_routes: string[] = [
             "contact-list",
-            "task-list" //TODO: Not sure if this is what 2d meant!
+            "task-list"
         ];
+    
     
         if(protected_routes.indexOf(router.ActiveLink) > -1)
         {
@@ -36,7 +29,7 @@
 
         router.LinkData = data;
         history.pushState({}, "", router.ActiveLink);
-
+        
         // capitalize active link and set document title to it
         document.title = router.ActiveLink.substring(0, 1).toUpperCase() + router.ActiveLink.substring(1);
 
@@ -46,6 +39,10 @@
             $(this).removeClass("active");
         });
 
+
+        // FIXME: Here we have a little bug, because we are using contains everytime we click on the Contact page
+        // link on the navbar it also adds the active class to the Contact-List link. Not sure how to fix this.
+        
         $(`li>a:contains(${document.title})`).addClass("active"); // updates the Active link on Navigation items
 
         CheckLogin();
@@ -121,8 +118,6 @@
             AddNavigationEvents();
             
             CheckLogin();
-
-            CheckProtectedLinks();
 
         });
     }
@@ -429,21 +424,36 @@
     function CheckProtectedLinks(): void {
 
         // if user is not logged in
-        if(!sessionStorage.getItem("user"))
+        if(sessionStorage.getItem("user"))
         {
-            // hide the contact-list and task-list links
-            $("#contact-list").hide();
-
-            $("#task-list").hide()
-        }
-        else {
-
             // show the contact-list and task-list links
             $("#contact-list").show();
 
             $("#task-list").show()
 
-            AddNavigationEvents()
+            $("#contact-list").on("click", function()
+            {
+                AddNavigationEvents();
+
+                // redirect back to login
+                LoadLink("contact-list");
+            });
+
+            $("#task-list").on("click", function()
+            {
+                AddNavigationEvents();
+
+                // redirect back to login
+                LoadLink("task-list");
+            });
+
+        }
+        else {
+
+            // hide the contact-list and task-list links
+            $("#contact-list").hide();
+
+            $("#task-list").hide()
         }
 
     }
@@ -632,10 +642,10 @@
             case "services": return DisplayServicesPage;
             case "contact": return DisplayContactPage;
             case "contact-list": return DisplayContactListPage;
+            case "task-list": return DisplayTaskList;
             case "edit": return DisplayEditPage;
             case "login": return DisplayLoginPage;
             case "register": return DisplayRegisterPage;
-            case "task-list": return DisplayTaskList;
             case "404": return Display404Page;
             default:
                 console.error("ERROR: callback does not exist: " + router.ActiveLink);
@@ -654,9 +664,9 @@
         console.log("App Started!");
 
         LoadHeader();
-        console.log("LoadHeader!");
+
         LoadLink("home");
-        console.log("LoadLink!");
+
         LoadFooter();
     }
 
