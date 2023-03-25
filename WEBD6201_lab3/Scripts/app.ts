@@ -1,3 +1,10 @@
+/**
+  Name: Eisha Aqeel, Angelica Kusik
+  Since: March 24, 2023
+  Last Updated: March 25, 2023
+  Description: WEBD6201 Lab 3 - app.ts
+**/
+
 // IIFE -- Immediately Invoked Function Expression
 // AKA -- Anonymous Self-Executing Function
 (function()
@@ -29,7 +36,7 @@
 
         router.LinkData = data;
         history.pushState({}, "", router.ActiveLink);
-        
+
         // capitalize active link and set document title to it
         document.title = router.ActiveLink.substring(0, 1).toUpperCase() + router.ActiveLink.substring(1);
 
