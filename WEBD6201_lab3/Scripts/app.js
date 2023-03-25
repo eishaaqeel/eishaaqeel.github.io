@@ -59,7 +59,6 @@
             $("header").html(html_data);
             AddNavigationEvents();
             CheckLogin();
-            CheckProtectedLinks();
         });
     }
     function LoadContent() {
@@ -232,14 +231,21 @@
         }
     }
     function CheckProtectedLinks() {
-        if (!sessionStorage.getItem("user")) {
-            $("#contact-list").hide();
-            $("#task-list").hide();
-        }
-        else {
+        if (sessionStorage.getItem("user")) {
             $("#contact-list").show();
             $("#task-list").show();
-            AddNavigationEvents();
+            $("#contact-list").on("click", function () {
+                AddNavigationEvents();
+                LoadLink("contact-list");
+            });
+            $("#task-list").on("click", function () {
+                AddNavigationEvents();
+                LoadLink("task-list");
+            });
+        }
+        else {
+            $("#contact-list").hide();
+            $("#task-list").hide();
         }
     }
     function DisplayLoginPage() {
@@ -352,10 +358,10 @@
             case "services": return DisplayServicesPage;
             case "contact": return DisplayContactPage;
             case "contact-list": return DisplayContactListPage;
+            case "task-list": return DisplayTaskList;
             case "edit": return DisplayEditPage;
             case "login": return DisplayLoginPage;
             case "register": return DisplayRegisterPage;
-            case "task-list": return DisplayTaskList;
             case "404": return Display404Page;
             default:
                 console.error("ERROR: callback does not exist: " + router.ActiveLink);
@@ -365,9 +371,7 @@
     function Start() {
         console.log("App Started!");
         LoadHeader();
-        console.log("LoadHeader!");
         LoadLink("home");
-        console.log("LoadLink!");
         LoadFooter();
     }
     window.addEventListener("load", Start);

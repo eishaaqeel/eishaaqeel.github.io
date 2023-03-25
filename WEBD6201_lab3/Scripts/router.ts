@@ -137,11 +137,11 @@ router.AddTable([
     "/services",
     "/contact",
     "/contact-list",
+    "/task-list",
     "/products",
     "/register",
     "/login",
-    "/edit",
-    "/task-list"
+    "/edit"
 ]);
 
 let route: string = location.pathname; // alias for location.pathname
