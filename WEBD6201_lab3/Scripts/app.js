@@ -76,7 +76,6 @@
         });
     }
     function DisplayHomePage() {
-        Start()
         console.log("Home Page");
         $("#AboutUsButton").on("click", () => {
             LoadLink("about");
