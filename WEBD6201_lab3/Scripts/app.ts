@@ -1,3 +1,8 @@
+/**
+ * Authors: Angelica Kusik, Eisha Aqeel
+ * Date: March 25, 2023
+ * 
+ */
 // IIFE -- Immediately Invoked Function Expression
 // AKA -- Anonymous Self-Executing Function
 (function()
