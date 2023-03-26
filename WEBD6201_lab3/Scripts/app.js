@@ -453,7 +453,7 @@
             case "services": return DisplayServicesPage;
             case "contact": return DisplayContactPage;
             case "contact-list": return DisplayContactListPage;
-            case "task-list": return DisplayTaskList;
+            case "task-list": return DisplayTaskList; 
             case "edit": return DisplayEditPage;
             case "login": return DisplayLoginPage;
             case "register": return DisplayRegisterPage;
