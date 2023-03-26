@@ -100,6 +100,8 @@ router.AddRoutingTable([
     "/edit"
 ])
 
+//window.history.pushState('', '', '/')
+
 //the following line causes errors
 //alias for location.pathname
 let route = location.pathname
