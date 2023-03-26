@@ -56,6 +56,7 @@
      */
     function LoadContent(){
         let pageName = router.ActiveLink
+        console.log(pageName);
         $.get(`./Views/content/${ pageName }.html`, function(html_data){
             $('main').html(html_data)
             ActiveLinkCallBack()
