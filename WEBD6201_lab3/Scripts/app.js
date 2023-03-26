@@ -1,5 +1,16 @@
+/**
+ * @author Angelica Kusik #100849912, Eisha Aqeel #100798173
+ * @version 2.0.0
+ * @since March 25, 2023
+ * @description WEBD6201 Labs - Js Functionality
+ * 
+ */
 "use strict";
 (function () {
+    /**
+     * Checks if protected_routes are actice so that if the not user is not loged in 
+     * they get redirected to login and can't access the gruaded pages
+     */
     function AuthGuard() {
         let protected_routes = [
             "contact-list",
@@ -11,6 +22,11 @@
             }
         }
     }
+    /**
+     * Load links
+     * @param {String} link 
+     * @param {String} data 
+     */
     function LoadLink(link, data = "") {
         router.ActiveLink = link;
         AuthGuard();
@@ -25,6 +41,9 @@
         CheckProtectedLinks();
         LoadContent();
     }
+    /**
+     * Handle the Navigation Events
+     */
     function AddNavigationEvents() {
         let NavLinks = $("ul>li>a");
         NavLinks.off("click");
@@ -36,6 +55,10 @@
             $(this).css("cursor", "pointer");
         });
     }
+    /**
+     * Add Events to the following Links
+     * @param {String} link 
+     */
     function AddLinkEvents(link) {
         let linkQuery = $(`a.link[data=${link}]`);
         linkQuery.off("click");
@@ -54,6 +77,9 @@
             $(this).css('font-weight', 'normal');
         });
     }
+    /**
+     * Load the header from header.html
+     */
     function LoadHeader() {
         $.get("./Views/components/header.html", function (html_data) {
             $("header").html(html_data);
@@ -61,6 +87,9 @@
             CheckLogin();
         });
     }
+    /**
+     * Laod Page Contents
+     */
     function LoadContent() {
         let page_name = router.ActiveLink;
         let callback = ActiveLinkCallBack();
@@ -69,11 +98,17 @@
             callback();
         });
     }
+    /**
+     * Load the footer from footer.html
+     */
     function LoadFooter() {
         $.get(`./Views/components/footer.html`, function (html_date) {
             $("footer").html(html_date);
         });
     }
+    /**
+     * Display Home Page Content
+     */
     function DisplayHomePage() {
         console.log("Home Page");
         $("#AboutUsButton").on("click", () => {
@@ -84,15 +119,30 @@
         <p id="ArticleParagraph" class ="mt-3">This is the Article Paragraph</p>
         </article>`);
     }
+    /***
+     * Display the Products Page
+     */
     function DisplayProductsPage() {
         console.log("Products Page");
     }
+    /**
+     * Display the Services Page
+     */
     function DisplayServicesPage() {
         console.log("Services Page");
     }
+    /**
+     * Display the About Us Page
+     */
     function DisplayAboutPage() {
         console.log("About Page");
     }
+    /**
+     * Add contact to store in localstorage
+     * @param {String} fullName 
+     * @param {String} contactNumber 
+     * @param {String} emailAddress 
+     */
     function AddContact(fullName, contactNumber, emailAddress) {
         let contact = new core.Contact(fullName, contactNumber, emailAddress);
         if (contact.serialize()) {
@@ -100,6 +150,14 @@
             localStorage.setItem(key, contact.serialize());
         }
     }
+    /**
+     * ValidateField takes in the id of the input field, the regex, and the exception message and uses the id of the input field to
+     * retrieve the data from the form and check it against the regex to see if it is valid. 
+     * It hides the error message when the user enters valid information in the field being checked and enables the submit button again.
+     * @param {String} fieldID 
+     * @param {RegExp} regular_expression 
+     * @param {String} error_message 
+     */
     function ValidateField(fieldID, regular_expression, error_message) {
         let messageArea = $("#messageArea").hide();
         $("#" + fieldID).on("blur", function () {
@@ -113,11 +171,17 @@
             }
         });
     }
+    /**
+     * Validation for the Contact Form using the ValidateField function
+     */
     function ContactFormValidation() {
         ValidateField("fullName", /^([A-Z][a-z]{1,3}.?\s)?([A-Z][a-z]{1,})((\s|,|-)([A-Z][a-z]{1,}))*(\s|,|-)([A-Z][a-z]{1,})$/, "Please enter a valid Full Name. This must include at least a Capitalized First Name and a Capitalized Last Name.");
         ValidateField("contactNumber", /^(\+\d{1,3}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, "Please enter a valid Contact Number. Example: (416) 555-5555");
         ValidateField("emailAddress", /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/, "Please enter a valid Email Address.");
     }
+    /**
+     * Display Contact US Page Content
+     */
     function DisplayContactPage() {
         console.log("Contact Page");
         $("a[data='contact-list']").off("click");
@@ -140,6 +204,9 @@
             }
         });
     }
+    /**
+     * Display the Contact List Page
+     */
     function DisplayContactListPage() {
         if (localStorage.length > 0) {
             let contactList = document.getElementById("contactList");
@@ -175,6 +242,9 @@
             LoadLink("edit", "add");
         });
     }
+    /**
+     * Display the page for editing the contact list
+     */
     function DisplayEditPage() {
         console.log("Edit Page");
         ContactFormValidation();
@@ -219,6 +289,9 @@
                 break;
         }
     }
+    /**
+     * Check if the user is logged in or not
+     */
     function CheckLogin() {
         if (sessionStorage.getItem("user")) {
             $("#login").html(`<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`);
@@ -230,6 +303,9 @@
             });
         }
     }
+    /**
+     * Check if Protected Links are shown on the nav bar
+     */
     function CheckProtectedLinks() {
         if (sessionStorage.getItem("user")) {
             $("#contact-list").show();
@@ -248,6 +324,9 @@
             $("#task-list").hide();
         }
     }
+    /**
+     * Display Login Page Content
+     */
     function DisplayLoginPage() {
         console.log("Login Page");
         let messageArea = $("#messageArea");
@@ -282,12 +361,21 @@
             LoadLink("home");
         });
     }
+    /**
+     * Display Register Page COntent
+     */
     function DisplayRegisterPage() {
         console.log("Register Page");
         AddLinkEvents("login");
     }
+    /**
+     * Display404Page if needed
+     */
     function Display404Page() {
     }
+    /**
+     * Add New Task to task list
+     */
     function AddNewTask() {
         let messageArea = $("#messageArea");
         messageArea.hide();
@@ -313,6 +401,9 @@
             messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
         }
     }
+    /**
+     * Display the task list
+     */
     function DisplayTaskList() {
         let messageArea = $("#messageArea");
         messageArea.hide();
@@ -350,6 +441,10 @@
             }
         });
     }
+    /**
+     * Active Link Call Back
+     * @returns a page depending on the case
+     */
     function ActiveLinkCallBack() {
         switch (router.ActiveLink) {
             case "home": return DisplayHomePage;
@@ -368,6 +463,9 @@
                 return new Function();
         }
     }
+    /**
+     * Start fuction to load header, link, and footer
+     */
     function Start() {
         console.log("App Started!");
         LoadHeader();
