@@ -1,6 +1,6 @@
 /*
   Name: Eisha Aqeel
-  Last Updated: Febuary 26, 2023
+  Last Updated: March 26, 2023
   Description: Java Script main file for the WEBD6201 Demo's
 */
 
@@ -39,9 +39,13 @@
      * @param {HTML} html_data 
      */
     function LoadHeader(html_data){
-        $('#navigationBar').html(html_data)
-                //find this anchor tag and see if it contains 
-                $(`li>a:contains(${document.title})`).addClass('active')
+        //location ./ is done like the following becaue this is called from the index page which is in the root 
+        $.get('./Views/components/header.html', function(html_data){
+            $('#navigationBar').html(html_data)
+            //the title will be the active link without a slash and the first letter turned Upppercase plus the rest of the ActiveLink
+            document.title = router.ActiveLink.substring(0, 2).toUpperCase() + router.ActiveLink.substring(2)
+            $(`li>a:contains(${document.title})`).addClass('active')
+        })
 
         CheckLogin()
     }
@@ -51,7 +55,11 @@
      * @returns {void}
      */
     function LoadContent(){
-
+        let pageName = router.ActiveLink
+        $.get(`./Views/content/${ pageName }.html`, function(html_data){
+            $('main').html(html_data)
+            ActiveLinkCallBack()
+        })
     }
 
     /**
@@ -59,14 +67,16 @@
      * @returns {void}
      */
     function LoadFooter(){
-        
+        $.get('./Views/components/footer.html', function(html_data){
+            $('footer').html(html_data)
+        })
     }
 
     
     function DisplayHome(){
         
         $("#RandomButton").on("click", function(){
-            window.location.href = "contact.html";
+            window.location.href = "/contact";
         })
 
         //set the following strings as the attributes content, using template literals such as ${firstString}
@@ -189,19 +199,19 @@
                     //then remove the contact from local storage
                     localStorage.removeItem($(this).val());
                     //and redirect to the same page, so that the updated table shows (refreshing the page)
-                    window.location.href = "contact-list.html";
+                    window.location.href = "/contact-list";
                 }
             })
 
             $("button.edit").on("click", function(){
-                window.location.href = "edit.html#" + $(this).val();
+                window.location.href = "/edit#" + $(this).val();
             })
 
         }
 
         //Add contact button
         $("#addButton").on("click", () =>{
-            window.location.href = "edit.html#Add";
+            window.location.href = "/edit#Add";
         })
 
     }
@@ -239,7 +249,7 @@
                         AddContact(fullName.value, contactNumber.value, emailAddress.value)
 
                         //redirect
-                        window.location.href = "contact-list.html";
+                        window.location.href = "/contact-list";
                     })
 
                 }
@@ -268,7 +278,7 @@
                     localStorage.setItem(page, contact.serialize())
 
                     //go back to contact-list.html
-                    window.location.href = "contact-list.html";
+                    window.location.href = "/contact-list";
                 })
 
                 }
@@ -311,7 +321,7 @@
                     //hide any error messages
                     messageArea.removeAttr('class').hide()
                     //redirect
-                    window.location.href = "contact-list.html";
+                    window.location.href = "/contact-list";
 
                 } else{
                     //display error message
@@ -326,7 +336,7 @@
             //clear the form
             document.form[0].reset()
             //return to home page
-            window.location.href = "index.html";
+            window.location.href = "/home";
         })
 
     }
@@ -341,12 +351,12 @@
 
             $('#logout').on('click', function(){
                 sessionStorage.clear()
-                window.location.href = "login.html";
+                window.location.href = "/login";
             })
 
             //show "show contact list button" button
             $('#contactListButton').html(
-                `<a href="./contact-list.html" class="btn btn-primary btn-lg"><i class="fas fa-users fa-lg"></i> Show Contact List </a>`
+                `<a href="/contact-list" class="btn btn-primary btn-lg"><i class="fas fa-users fa-lg"></i> Show Contact List </a>`
             )
         }
     }
@@ -368,7 +378,21 @@
      * @returns {function}
      */
     function ActiveLinkCallBack(){
+        console.log(`ActiveLinkCallBack - ${router.ActiveLink}`)
 
+        switch(router.ActiveLink){
+            case "home": return DisplayHome()
+            case "projects": return DisplayProjects()
+            case "contact": return DisplayContactUs()
+            case "contact-list": return DisplayContactList()
+            case "references": return DisplayReferences
+            case "edit": return DisplayEditPage()
+            case "login": return DisplayLoginPage()
+            case "register": return DisplayRegisterPage()
+            case "404": return Display404Page()
+            default:
+                console.error(`Error: Callback does not Exist ${router.ActiveLink}`);
+        }
     }
 
     function Start() {

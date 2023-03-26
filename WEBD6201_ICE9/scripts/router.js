@@ -1,4 +1,4 @@
-let core
+//let core
 (function(core){
     class Router{
         //public properties: get and set
@@ -7,17 +7,16 @@ let core
          * 
          */
         get ActiveLink(){
-            return this.m_activelink
+            return this.m_activeLink
 
         }
         /**
          * @param {string} link
          */
         set ActiveLink(link){
-            this.m_activelink = link
+            this.m_activeLink = link
         }
 
-        
         /**
          * Creates an instance of Router.
          * @constructor
@@ -26,8 +25,9 @@ let core
             this.ActiveLink = ""
         }
 
+        //public methods - paths for methods
         /**
-         * 
+         * This method adds a new route to the Routing Table
          * @param {string[]} route 
          * @returns {void}
          */
@@ -46,6 +46,7 @@ let core
         }
 
         /**
+         * This method finds and returns the index of the route in the routing table
          * 
          * @param {string} route 
          * @returns {number}
@@ -56,14 +57,16 @@ let core
 
         /**
          * removes a route from the routing table
-         * returns true of the route is removed
+         * returns true of the route is removed, otherwise it returns -1
          * @param {stirng} route 
          * @returns {boolean}
          */
         Remove(route){
-            //if route is found
+            //if route is found, is it greater then -1 
+            //if the value of Find is -1 it means that the route was Not found
             if(this.Find(route) > -1){
                 //remove the route
+                // we are using splice to remove 1 element (the slash in our routes)
                 this.m_routingTable.splice(this.Find(route), 1)
                 return true
             }
@@ -72,19 +75,19 @@ let core
 
         //public override method
         /**
-         * returns
+         * This method overrides the built-in toString method 
+         * and returns the Routing Table in a comma seperated string 
          * @returns {string}
          */
         toString(){
             return this.m_routingTable.toString()
         }
-
     }
     core.Router = Router
 })(core || (core = {}))
 
 let router = new core.Router()
-let routingTable = [
+router.AddRoutingTable([
     "/",                //default route
     "/home",            //home page route
     "/about",           //about page route
@@ -95,9 +98,10 @@ let routingTable = [
     "/register",
     "/login",
     "/edit"
-]
+])
 
 //the following line causes errors
+//alias for location.pathname
 let route = location.pathname
 
 //the following is commented out because the next line of uncommented code is the same but with less code
