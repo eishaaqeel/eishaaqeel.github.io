@@ -88,7 +88,7 @@
 
 let router = new core.Router()
 router.AddRoutingTable([
-    "/",                //default route
+    "/WEBD6201_ICE9/",                //default route
     "/home",            //home page route
     "/about",           //about page route
     "/services",
