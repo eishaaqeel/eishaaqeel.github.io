@@ -49,16 +49,15 @@ namespace core{
         }
 
         //utility Methods
-        //FIXME: need to fix the return type
-        toJSON(){
+        toJSON(): {DisplayName: string, EmailAddress: string, Username: string} {
             return{
                 "DisplayName": this.DisplayName,
                 "EmailAddress": this.EmailAddress,
                 "Username": this.Username,
             }
         }
-        //FIXME: fix the paramater data type
-        fromJSON(data: any): void{
+        
+        fromJSON(data: User): void{
             this.DisplayName = data.DisplayName
             this.EmailAddress = data.EmailAddress
             this.Username = data.Username
