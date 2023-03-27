@@ -77,7 +77,7 @@
     }
     function DisplayHome() {
         $("#RandomButton").on("click", function () {
-            window.location.href = "/contact";
+            LoadLink('contact-list');
         });
         let firstString = "This is a ";
         let secondString = `${firstString} main paragraph that I added through javascript.`;

@@ -137,7 +137,8 @@
     function DisplayHome(): Function{
         
         $("#RandomButton").on("click", function(){
-            window.location.href = "/contact";
+            //window.location.href = "/contact";
+            LoadLink('contact-list')
         })
 
         //set the following strings as the attributes content, using template literals such as ${firstString}
