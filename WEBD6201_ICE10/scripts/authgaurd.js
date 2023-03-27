@@ -5,7 +5,7 @@
     ];
     if (protectedRoutes.indexOf(router.ActiveLink) > -1) {
         if (!sessionStorage.getItem("user")) {
-            window.location.href = "login.html";
+            window.location.href = '/login';
         }
     }
 })();

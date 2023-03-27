@@ -2,7 +2,9 @@ namespace core{
     export class Router{
         //private instance members
         private m_activeLink: string
+        //FIXME: private m_linkData: string
         private m_routingTable: string[]
+        
 
         //public properties: get and set
         /**

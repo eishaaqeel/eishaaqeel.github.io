@@ -7,30 +7,81 @@
 
 (function () {
 
-    /**
-     * This function uses AJAX to open a connection to the server and returns a data payload to the callback function
-     * @param {string} method 
-     * @param {string} url 
-     * @param {Function} callback 
-     */
-    function AjaxRequest(method: string, url: string, callback: Function){
-        // AJAX
-        // instantiate the XHR Object
-        let XHR = new XMLHttpRequest()
-        // add event listener for ready state change
-        XHR.addEventListener("readystatechange", () => {
-            if(XHR.readyState === 4 && XHR.status === 200){
-                if(typeof callback === 'function'){
-                    callback(XHR.responseText)
-                } else{
-                    console.error("ERROR: callback is not a function.");
-                }
+    function AuthGuard(): void{
+        let protectedRoutes: string[] = [
+            'contact-list'
+        ]
+    
+        if (protectedRoutes.indexOf(router.ActiveLink) > -1){
+            // check if user is logged in
+            if(!sessionStorage.getItem("user")){
+                //redirect user to login.html
+                router.ActiveLink = 'login';
             }
+        }  
+    }
+
+    function LoadLink(link: string, data: string = ""): void {
+        router.ActiveLink = link
+
+        AuthGuard()
+
+        //FIXME: router.LinkData = data
+        history.pushState({}, "", router.ActiveLink)
+
+        document.title = router.ActiveLink.substring(0, 1).toUpperCase() + router.ActiveLink.substring(1)
+
+        // remove all active links
+        $('ul>li>a').each(function() {
+            $(this).removeClass('active')
         })
-        // connect and get data
-        XHR.open(method, url)
-        // send request to server to await response
-        XHR.send()
+
+        $(`li>a:contains(${ document.title })`).addClass('active')
+
+        LoadContent()
+    }
+
+    function AddNavigationEvents(): void {
+        let navLinks = $('ul>li>a') // get all navigation links
+
+        // remove navigation events
+        navLinks.off('click')
+        navLinks.off('mouseover')
+
+        // loop through each navigation link and load the appropriate content/data on click
+        navLinks.on('click', function() {
+            LoadLink($(this).attr('data') as string)
+        })
+
+        // make the nvigation links look clickable
+        navLinks.on('mouseover', function() {
+            $(this).css('cursor', 'pointer')
+        })
+    }
+
+    function AddLinkEvents(link: string): void {
+        let linkQuery = $(`a.link[data=${ link }]`)
+
+        // remove all link events
+        linkQuery.off('click')
+        linkQuery.off('mouseover')
+        linkQuery.off('mouseout')
+
+        // add css to adjust the link aesthetics
+        linkQuery.css('text-decoration', 'underline')
+        linkQuery.css('color', 'blue')
+
+        // add link events
+        linkQuery.on('click', function() {
+            LoadLink(`${ link }`)
+        })
+        linkQuery.on('mouseover', function() {
+            $(this).css('cursor', 'pointer')
+            $(this).css('font-weight', 'bold')
+        })
+        linkQuery.on('mouseout', function() {
+            $(this).css('font-weight', 'normal')
+        })
     }
 
     /**
@@ -259,6 +310,8 @@
     function DisplayEditPage(): Function{
         ContactFormValidate()
 
+        
+
         //get the spcific hash element
         let page = location.hash.substring(1)
 
@@ -326,7 +379,7 @@
         let messageArea = $('#messageArea')
         messageArea.hide()
 
-        //FIXME: AddLinkEvents('register')
+        AddLinkEvents('register')
 
         //click functionality
         $('#loginButton').on('click', function(){
@@ -357,7 +410,7 @@
                     messageArea.removeAttr('class').hide()
                     // redirect the user to the secure area of our website - contact-list.html
                     // location.href = '/contact-list'
-                    //FIXME: LoadLink('contact-list')
+                    LoadLink('contact-list')
 
                 } else{
                     //display error message
@@ -373,7 +426,7 @@
             document.forms[0].reset()
             //return to home page
             //window.location.href = "/home";
-            //FIXME: LoadLink('home')
+            LoadLink('home')
         })
         return new Function()
     }
@@ -394,16 +447,16 @@
                     `<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`
                 )
 
-                //FIXME: AddNavigationEvents()
+                AddNavigationEvents()
 
                 // redirect to login.html
                 // location.href = '/login'
-                //FIXME: LoadLink('login')
+                LoadLink('login')
             })
 
             //show "show contact list button" button
             $('#contactListButton').html(
-                `<a href="/contact-list" class="btn btn-primary btn-lg"><i class="fas fa-users fa-lg"></i> Show Contact List </a>`
+                `<a data="contact-list" class="btn btn-primary btn-lg link"><i class="fas fa-users fa-lg"></i> Show Contact List </a>`
             )
         }
     }
@@ -411,7 +464,7 @@
     function DisplayRegisterPage(): Function {
         console.log("Registration Page")
 
-        //FIXME: AddLinkEvents('login')
+        AddLinkEvents('login')
 
         return new Function()
     }
@@ -458,7 +511,7 @@
         LoadHeader()
 
         //LoadContent()
-        //FIXME: LoadLink("home")
+        LoadLink("home")
 
         LoadFooter()
 

@@ -7,7 +7,7 @@
         // check if user is logged in
         if(!sessionStorage.getItem("user")){
             //redirect user to login.html
-            window.location.href = "login.html";
+            window.location.href = '/login';
         }
     }   
 
