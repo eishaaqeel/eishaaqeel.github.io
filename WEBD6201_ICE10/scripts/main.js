@@ -15,7 +15,7 @@
         AuthGuard();
         router.LinkData = data;
         history.pushState({}, "", router.ActiveLink);
-        document.title = router.ActiveLink.substring(0, 2).toUpperCase() + router.ActiveLink.substring(2);
+        document.title = router.ActiveLink.substring(0, 1).toUpperCase() + router.ActiveLink.substring(1);
         $('ul>li>a').each(function () {
             $(this).removeClass('active');
         });
