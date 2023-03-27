@@ -138,7 +138,7 @@
         
         $("#RandomButton").on("click", function(){
             //window.location.href = "/contact";
-            LoadLink('contact-list')
+            LoadLink('contact')
         })
 
         //set the following strings as the attributes content, using template literals such as ${firstString}
