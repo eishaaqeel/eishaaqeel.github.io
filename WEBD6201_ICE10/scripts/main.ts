@@ -26,16 +26,17 @@
 
         AuthGuard()
 
-        //FIXME: router.LinkData = data
+        router.LinkData = data
         history.pushState({}, "", router.ActiveLink)
 
-        document.title = router.ActiveLink.substring(0, 1).toUpperCase() + router.ActiveLink.substring(1)
+        document.title = router.ActiveLink.substring(0, 2).toUpperCase() + router.ActiveLink.substring(2)
 
         // remove all active links
+        //get all >a tags and remove the active class from them
         $('ul>li>a').each(function() {
             $(this).removeClass('active')
         })
-
+        //then find the one that is currtly in use, make that one active
         $(`li>a:contains(${ document.title })`).addClass('active')
 
         LoadContent()
@@ -93,9 +94,8 @@
         //location ./ is done like the following becaue this is called from the index page which is in the root 
         $.get('./Views/components/header.html', function(html_data){
             $('#navigationBar').html(html_data)
-            //the title will be the active link without a slash and the first letter turned Upppercase plus the rest of the ActiveLink
-            document.title = router.ActiveLink.substring(0, 2).toUpperCase() + router.ActiveLink.substring(2)
-            $(`li>a:contains(${document.title})`).addClass('active')
+
+            AddNavigationEvents()
 
             CheckLogin()
         })
@@ -114,6 +114,9 @@
         console.log(pageName);
         $.get(`./Views/content/${ pageName }.html`, function(html_data){
             $('main').html(html_data)
+
+            CheckLogin()
+
             ActiveLinkCallBack()
         })
         return new Function()
@@ -206,6 +209,11 @@
     function DisplayContactUs(): Function{
         console.log("Contact Us Page")
 
+        $('a[data="contact-list"]').off('click')
+        $('a[data="contact-list"]').on('click', function(){
+            LoadLink('contact-list')
+        })
+
         ContactFormValidate()
 
         // submitButton is of type HTMLElement
@@ -288,19 +296,22 @@
                     //then remove the contact from local storage
                     localStorage.removeItem($(this).val() as string)
                     //and redirect to the same page, so that the updated table shows (refreshing the page)
-                    window.location.href = "/contact-list";
+                    //window.location.href = "/contact-list";
+                    LoadLink('contact-list')
                 }
             })
 
             $("button.edit").on("click", function(){
-                window.location.href = "/edit#" + $(this).val();
+                //window.location.href = "/edit#" + $(this).val();
+                LoadLink('edit', $(this).val() as string)
             })
 
         }
 
         //Add contact button
         $("#addButton").on("click", () =>{
-            window.location.href = "/edit#Add";
+            //window.location.href = "/edit#Add";
+            LoadLink('edit', 'Add')
         })
 
         return new Function()
@@ -313,7 +324,7 @@
         
 
         //get the spcific hash element
-        let page = location.hash.substring(1)
+        let page = router.LinkData
 
         switch(page){
             case "Add":
@@ -334,7 +345,7 @@
                         AddContact(fullName, contactNumber, emailAddress)
 
                         //redirect
-                        window.location.href = "/contact-list";
+                        LoadLink('contact-list')
                     })
 
                 }
@@ -363,7 +374,11 @@
                     localStorage.setItem(page, contact.serialize() as string)
 
                     //go back to contact-list.html
-                    window.location.href = "/contact-list";
+                    LoadLink('contact-list')
+                })
+
+                $("#resetButton").on("click", () => {
+                    LoadLink('contact-list')
                 })
 
                 }
