@@ -1,3 +1,4 @@
-const hello = require('./hello')
+import { sayHello } from './hello.js'
 
-hello.sayHello()
+sayHello()
+//sayBye()

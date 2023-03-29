@@ -4,7 +4,6 @@ const hello = 'hello world'
 //   console.log(hello)
 //}
 
-function sayHello(){
+export function sayHello(){
     console.log(hello)
 }
-module.exports = {sayHello}
