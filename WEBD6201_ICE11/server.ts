@@ -1,43 +1,55 @@
+import app from './app'
+import debug from 'debug'
+debug('temp:server')
 import http from 'http'
-// access filesystem
-import fs from 'fs'
-import mime from 'mime-types'
+import { HttpError } from 'http-errors'
 
-const hostname = '127.0.0.1';
-//if there is an enviorment PORT use that instead of 3000
-const port = process.env.PORT || 3000;
+// Normalize port into a number, string, or false
+const normalizePort = (val: string) => {
+    const port = parseInt(val, 10)
+    
+    //if port is Not a Number(isNaNi) return val,
+    if (isNaN(port)) return val
+    //if the port is a number that is >= 0 return port,
+    if (port >= 0) return port
+    //otherwise retun false
+    return false
+}
 
-let lookup = mime.lookup
+const port = normalizePort(process.env.PORT || '3000') as number
+app.set('port', port)
 
-const server = http.createServer((req, res) => {
-//  res.statusCode = 200;
-//  res.setHeader('Content-Type', 'text/plain');
-//  res.end('Hello World');
+// Event listening for HTTP server 'error' event
+const onError = (error: HttpError) => {
+    if (error.syscall !== 'listen') throw error
 
+    const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
 
-    let path = req.url as string
-    if (path == "/" || path == "/home"){
-        path = "/index.html"
+    // handle specific listen errors with custom messages
+    switch(error.code) {
+        case 'EACCS':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1)
+            break
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1)
+            break
+        default:
+            throw error
     }
+}
 
-    //look for mime-types
-    let mimeType = lookup(path.substring(1)) as string
+//listener
+const onListening = () => {
+    //use let because these variables can change
+    let addr = server.address()
+    let bind = 'pipe ' + addr
+    debug('Listening on ' + bind)
+}
 
-    fs.readFile(__dirname + path, (err, data) => {
-        if (err){
-            res.writeHead(404)
-            res.end("Error 404 - File not Found!" + err.message)
-            return
-        }
-        res.setHeader("X-Content-Type-Options", "nosniff")
-        res.writeHead(200, {
-            "Content-Type": mimeType
-        })
-        res.end(data)
-    })
-
-});
-
-server.listen(port, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+//start our server
+const server = http.createServer(app)
+server.listen(port)
+server.on('error', onError)
+server.on('listening', onListening)
